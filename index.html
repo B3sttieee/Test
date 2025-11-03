@@ -30,7 +30,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* bg blobs */
         .blob {
             position: fixed;
             width: 30rem;
@@ -57,7 +56,6 @@
             }
         }
 
-        /* tilt base */
         .tilt {
             transition: transform .25s ease, box-shadow .25s ease;
             transform-style: preserve-3d;
@@ -74,7 +72,6 @@
             backdrop-filter: blur(12px);
         }
 
-        /* left */
         .profile {
             padding: 1.5rem 1.4rem 1.1rem;
         }
@@ -98,7 +95,7 @@
             border-radius: inherit;
             border: 2px solid rgba(255,255,255,.35);
             background: #0d0d0d center center / cover no-repeat;
-            /* ważne: czyta avatar.gif z repo, ?v=1 żeby GitHub odświeżył */
+            /* czyta avatar.gif z repo, ?v=1 żeby odświeżyć */
             background-image: url("avatar.gif?v=1");
         }
         .name-box h1 {
@@ -173,7 +170,7 @@
         .stat-label {
             font-size: .6rem;
             text-transform: uppercase;
-            color: rgba(255,255,255,.65);
+            color: rgba(255,255,255,.75);
         }
         .stat-value {
             font-size: .9rem;
@@ -188,7 +185,6 @@
             text-align: center;
         }
 
-        /* right */
         .side {
             display: flex;
             flex-direction: column;
@@ -259,11 +255,19 @@
             cursor: pointer;
             color: #fff;
         }
-
         @media (max-width: 900px) {
             .profile { padding: 1.3rem 1rem; }
             .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
             .tilt:hover { transform: none; }
+        }
+
+        /* ukryty youtube player */
+        #ytplayer {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -272,7 +276,7 @@
     <div class="blob b2"></div>
 
     <div class="layout">
-        <!-- LEWA: profil -->
+        <!-- LEFT -->
         <div class="card profile tilt">
             <div class="top-row">
                 <div class="avatar-ring">
@@ -323,14 +327,14 @@
             <p class="footer">made on GitHub Pages 💜</p>
         </div>
 
-        <!-- PRAWA: panele -->
+        <!-- RIGHT -->
         <div class="side">
             <div class="panel-box tilt" id="musicPanel">
                 <div class="panel-title">player</div>
                 <div class="music-line">
                     <div class="music-info">
                         <small>teraz leci</small>
-                        <div>Chill track</div>
+                        <div>YouTube: MvVWqhVlUzk</div>
                     </div>
                     <button class="music-btn" id="toggleMusic">
                         <i class="fa-solid fa-play"></i>
@@ -360,9 +364,11 @@
         </div>
     </div>
 
-    <!-- audio -->
-    <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <!-- ukryty youtube player -->
+    <div id="ytplayer"></div>
 
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         // copy discord
         const copyText = "b3sttiee";
@@ -381,27 +387,48 @@
             });
         });
 
-        // music
-        const audio = document.getElementById("bgMusic");
-        const toggle = document.getElementById("toggleMusic");
-        let playing = false;
-        toggle.addEventListener("click", () => {
-            if (!playing) {
-                audio.play().then(() => {
-                    playing = true;
-                    toggle.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                }).catch(() => alert("Kliknij jeszcze raz – przeglądarka blokuje autoplay."));
-            } else {
-                audio.pause();
-                playing = false;
-                toggle.innerHTML = '<i class="fa-solid fa-play"></i>';
-            }
-        });
-
-        // scroll to music panel
+        // scroll to music
         document.getElementById("scrollMusic").addEventListener("click", () => {
             document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
         });
+
+        // YouTube player
+        let ytPlayer;
+        let isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('ytplayer', {
+                height: '0',
+                width: '0',
+                videoId: 'MvVWqhVlUzk', // <-- twój ID
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    loop: 1,
+                    playlist: 'MvVWqhVlUzk'
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady() {
+            const toggleBtn = document.getElementById("toggleMusic");
+            toggleBtn.addEventListener("click", () => {
+                if (!isPlaying) {
+                    ytPlayer.playVideo();
+                    isPlaying = true;
+                    toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                } else {
+                    ytPlayer.pauseVideo();
+                    isPlaying = false;
+                    toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                }
+            });
+        }
+        // expose for YouTube
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
     </script>
 </body>
 </html>
