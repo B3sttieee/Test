@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>B3sttieee | Bio</title>
+    <title>B3sttieee | Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
-            --card-bg: rgba(16, 16, 16, 0.55);
-            --card-border: rgba(255, 255, 255, 0.06);
-            --accent: #ff4d6d;
-            --accent2: #ff914d;
+            --bg1: #0a0a0f;
+            --bg2: #14141d;
+            --card: rgba(12, 12, 12, 0.35);
+            --stroke: rgba(255, 255, 255, 0.06);
+            --highlight: #ff4d6d;
+            --highlight2: #ff914d;
             --text: #ffffff;
+            --muted: rgba(255,255,255,.6);
+            --radius-lg: 22px;
         }
         * { box-sizing: border-box; }
         body {
@@ -20,47 +24,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at top, #0f0f12 0%, #020203 60%, #000 100%);
+            background: radial-gradient(circle at top, #000 0%, #020204 60%, #000 100%);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: var(--text);
             overflow: hidden;
             position: relative;
         }
-        /* faint particles */
-        .orb {
+
+        /* background animated blobs */
+        .bg-blob {
             position: fixed;
-            width: 220px;
-            height: 220px;
-            background: radial-gradient(circle, rgba(255, 77, 109, .45), rgba(255, 77, 109, 0));
-            filter: blur(35px);
-            opacity: .45;
-            animation: float 12s ease-in-out infinite alternate;
-            z-index: -2;
+            width: 34rem;
+            height: 34rem;
+            background: radial-gradient(circle, rgba(255,77,109,.2), rgba(255,77,109,0));
+            filter: blur(70px);
+            animation: float 18s ease-in-out infinite alternate;
+            z-index: -3;
         }
-        .orb.o1 { top: -40px; right: 15%; }
-        .orb.o2 { bottom: -60px; left: 10%; animation-delay: 2.6s; background: radial-gradient(circle, rgba(0,170,255,.5), rgba(0,170,255,0)); }
+        .bg-blob.b1 { top: -10rem; right: -3rem; }
+        .bg-blob.b2 { bottom: -12rem; left: -5rem; animation-delay: 4s; background: radial-gradient(circle, rgba(0,140,255,.25), rgba(0,140,255,0)); }
         @keyframes float {
-            to { transform: translateY(45px); opacity: .2; }
+            to { transform: translateY(2.5rem); opacity: .3; }
         }
 
-        .card {
-            width: min(95%, 440px);
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 22px;
-            backdrop-filter: blur(14px);
-            padding: 1.75rem 1.6rem 1.35rem;
-            text-align: center;
-            box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+        .wrapper {
+            width: min(100%, 1080px);
+            padding: clamp(1.2rem, 2vw, 1.8rem);
+            display: grid;
+            gap: clamp(1.2rem, 2vw, 1.6rem);
+            grid-template-columns: 1.3fr .7fr;
+        }
+        @media (max-width: 880px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+            }
+        }
+
+        .profile-card {
+            background: radial-gradient(circle at 10% 10%, rgba(255, 77, 109, 0.08), rgba(0,0,0,0) 50%), rgba(14,14,16,0.45);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+            padding: clamp(1.4rem, 2vw, 1.9rem);
             position: relative;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+        }
+        .avatar-row {
+            display: flex;
+            gap: 1.1rem;
+            align-items: center;
         }
         .avatar-wrap {
-            width: 125px;
-            height: 125px;
+            width: 108px;
+            height: 108px;
             border-radius: 999px;
-            margin: 0 auto 1rem;
+            background: radial-gradient(circle, rgba(255,77,109,.6) 0%, rgba(255,77,109,0) 55%);
             padding: 3px;
-            background: radial-gradient(circle, rgba(255,77,109,1) 0%, rgba(0,0,0,0) 62%);
             display: grid;
             place-items: center;
         }
@@ -68,181 +88,309 @@
             width: 100%;
             height: 100%;
             border-radius: inherit;
-            border: 2px solid rgba(255,255,255,0.25);
-            background: #111 center center / cover no-repeat;
-            /* TU podmieniasz fotę/gifa: wrzuć plik avatar.gif obok index.html i zostaw tę linię */
+            border: 2px solid rgba(255,255,255,0.33);
+            background: #101010 center center / cover no-repeat;
             background-image: url("avatar.gif");
         }
-        h1 {
+        .name-block h1 {
             font-size: 1.55rem;
             margin: 0;
-            display: inline-flex;
+            display: flex;
+            gap: .45rem;
             align-items: center;
-            gap: .35rem;
         }
-        .tagline {
-            font-size: .78rem;
-            margin-top: .4rem;
-            opacity: .85;
+        .badge-online {
+            background: rgba(44, 255, 133, .08);
+            border: 1px solid rgba(44,255,133,0.13);
+            color: #9dffbf;
+            font-size: .58rem;
+            padding: .2rem .5rem .28rem;
+            border-radius: 999px;
+            display: inline-flex;
+            gap: .2rem;
+            align-items: center;
+        }
+        .sub {
+            font-size: .72rem;
+            margin-top: .25rem;
+            color: var(--muted);
         }
         .about {
-            margin-top: 1rem;
-            font-size: .85rem;
-            line-height: 1.5;
-            opacity: .95;
+            margin-top: 1.05rem;
+            font-size: .83rem;
+            line-height: 1.45;
         }
 
-        .buttons {
+        .btn-row {
             display: flex;
-            flex-direction: column;
-            gap: .65rem;
-            margin-top: 1.5rem;
+            gap: .7rem;
+            margin-top: 1.3rem;
+            flex-wrap: wrap;
         }
         .btn {
-            width: 100%;
             border: none;
             border-radius: 14px;
-            padding: .7rem .9rem;
-            display: flex;
+            padding: .6rem .9rem;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: .45rem;
-            font-size: .84rem;
+            gap: .4rem;
+            font-size: .78rem;
             cursor: pointer;
-            transition: transform .12s ease-out, box-shadow .12s ease-out, background .12s ease-out;
+            transition: transform .12s ease-out, box-shadow .12s ease-out;
         }
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+            background: linear-gradient(135deg, var(--highlight) 0%, var(--highlight2) 100%);
             color: #fff;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            box-shadow: 0 8px 21px rgba(255, 77, 109, 0.35);
         }
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.02);
             color: #fff;
         }
         .btn:hover { transform: translateY(-1px); }
 
-        .music-box {
-            margin-top: 1.1rem;
-            background: rgba(0,0,0,0.12);
-            border: 1px solid rgba(255,255,255,0.03);
+        /* stats section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(90px, 1fr));
+            margin-top: 1.6rem;
+            gap: .75rem;
+        }
+        .stat {
+            background: radial-gradient(circle, rgba(255,255,255,0.025), rgba(255,255,255,0));
+            border: 1px solid rgba(255,255,255,0.015);
             border-radius: 14px;
-            padding: .55rem .7rem .55rem;
+            padding: .55rem .45rem;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: .62rem;
+            color: rgba(255,255,255,.45);
+        }
+        .stat-value {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: .2rem;
+        }
+
+        /* right side */
+        .side-panel {
+            background: rgba(12,12,12,0.3);
+            border: 1px solid rgba(255,255,255,0.02);
+            border-radius: 18px;
+            backdrop-filter: blur(9px);
+            padding: 1rem .95rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            height: fit-content;
+        }
+        .panel-title {
+            font-size: .68rem;
+            color: rgba(255,255,255,.46);
+            text-transform: uppercase;
+            letter-spacing: .12rem;
+        }
+        .music-box,
+        .links-box {
+            background: radial-gradient(circle, rgba(0,0,0,0.14), rgba(0,0,0,0));
+            border: 1px solid rgba(255,255,255,.015);
+            border-radius: 14px;
+            padding: .6rem .7rem .7rem;
+        }
+        .music-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: .75rem;
+            gap: .8rem;
         }
-        .music-info {
-            text-align: left;
+        .music-text {
+            line-height: 1.1;
         }
-        .music-title {
-            font-size: .7rem;
-            opacity: .7;
+        .music-text small {
+            font-size: .6rem;
+            color: rgba(255,255,255,.5);
         }
-        .music-name {
-            font-size: .8rem;
+        .music-text div {
+            font-size: .78rem;
         }
         .music-btn {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.02);
-            border-radius: 999px;
             width: 35px;
             height: 35px;
+            border-radius: 999px;
             display: grid;
             place-items: center;
             cursor: pointer;
         }
-
-        .footer {
-            margin-top: 1.1rem;
-            font-size: .6rem;
-            opacity: .55;
+        .pill {
+            display: inline-flex;
+            gap: .4rem;
+            align-items: center;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.01);
+            border-radius: 999px;
+            padding: .3rem .55rem;
+            font-size: .68rem;
+            margin-right: .4rem;
+            margin-bottom: .4rem;
         }
-
-        @media (max-width: 460px) {
-            .card { padding: 1.4rem 1.05rem 1.1rem; }
-            h1 { font-size: 1.4rem; }
-            .music-name { font-size: .74rem; }
+        .footer {
+            font-size: .6rem;
+            color: rgba(255,255,255,.3);
+            text-align: center;
+            margin-top: 1.35rem;
+        }
+        @media (max-width: 880px) {
+            .side-panel { order: -1; }
+            .avatar-row { flex-wrap: wrap; }
+            .btn-row { flex-direction: column; }
+            .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
     </style>
 </head>
 <body>
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
+    <div class="bg-blob b1"></div>
+    <div class="bg-blob b2"></div>
 
-    <main class="card">
-        <div class="avatar-wrap">
-            <div class="avatar" aria-label="Profil GIF"></div>
-        </div>
-        <h1>B3sttieee <span style="font-size:.85rem;">🔥</span></h1>
-        <p class="tagline">Solo Leveling enjoyer • Roblox • Discord</p>
-        <p class="about">
-            Yo! To jest mój mały profil na szybkie linki. Roblox niżej 👇<br>
-            Discord do skopiowania: <strong>b3sttiee</strong>
-        </p>
-
-        <div class="buttons">
-            <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank" rel="noopener">
-                <i class="fa-brands fa-roblox"></i>
-                Roblox profile
-            </a>
-
-            <button class="btn btn-secondary" id="copyDiscord">
-                <i class="fa-brands fa-discord"></i>
-                Copy Discord (b3sttiee)
-            </button>
-        </div>
-
-        <!-- music -->
-        <div class="music-box">
-            <div class="music-info">
-                <div class="music-title">now playing</div>
-                <div class="music-name">Solo vibe track</div>
+    <div class="wrapper">
+        <!-- MAIN PROFILE -->
+        <section class="profile-card">
+            <div class="avatar-row">
+                <div class="avatar-wrap">
+                    <div class="avatar" aria-label="avatar gif"></div>
+                </div>
+                <div class="name-block">
+                    <h1>
+                        B3sttieee
+                        <span style="font-size:.8rem;">🔥</span>
+                    </h1>
+                    <div class="badge-online">
+                        <span style="background:#3fff9f;width:6px;height:6px;border-radius:99px;display:inline-block;"></span>
+                        online
+                    </div>
+                    <p class="sub">Solo Leveling enjoyer • Roblox • Discord</p>
+                </div>
             </div>
-            <button class="music-btn" id="toggleMusic" aria-label="Play / Pause music">
-                <i class="fa-solid fa-play"></i>
-            </button>
-        </div>
 
-        <p class="footer">made on GitHub Pages 💜</p>
-    </main>
+            <p class="about">
+                Yo! To jest mój profil na szybkie linki i pokazanie kim jestem. Roblox niżej 👇<br>
+                Discord do skopiowania: <strong>b3sttiee</strong>
+            </p>
 
-    <!-- example audio (możesz podmienić src na swoją mp3 w repo) -->
+            <div class="btn-row">
+                <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-roblox"></i>
+                    Roblox profile
+                </a>
+                <button class="btn btn-secondary" id="copyDiscord">
+                    <i class="fa-brands fa-discord"></i>
+                    Copy Discord
+                </button>
+                <button class="btn btn-secondary" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">
+                    <i class="fa-solid fa-headphones"></i>
+                    Muzyka
+                </button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-label">discord</div>
+                    <div class="stat-value">b3sttiee</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">roblox link</div>
+                    <div class="stat-value">1</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">vibe</div>
+                    <div class="stat-value">solo ⚔</div>
+                </div>
+            </div>
+
+            <p class="footer">made on GitHub Pages 💜</p>
+        </section>
+
+        <!-- SIDE PANEL -->
+        <aside class="side-panel">
+            <div class="music-box">
+                <div class="panel-title">player</div>
+                <div class="music-inner">
+                    <div class="music-text">
+                        <small>now playing</small>
+                        <div>Solo vibe track</div>
+                    </div>
+                    <button class="music-btn" id="toggleMusic" aria-label="Play / Pause">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="links-box">
+                <div class="panel-title">tags</div>
+                <div>
+                    <span class="pill"><i class="fa-solid fa-dragon"></i> solo leveling</span>
+                    <span class="pill"><i class="fa-brands fa-roblox"></i> roblox</span>
+                    <span class="pill"><i class="fa-solid fa-code"></i> pages</span>
+                    <span class="pill"><i class="fa-brands fa-discord"></i> discord</span>
+                </div>
+            </div>
+
+            <div class="links-box">
+                <div class="panel-title">other links</div>
+                <div>
+                    <a class="btn btn-secondary" style="width:100%;justify-content:flex-start;" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
+                        <i class="fa-brands fa-roblox"></i> Roblox
+                    </a>
+                    <button class="btn btn-secondary" style="width:100%;justify-content:flex-start;" id="copyDiscord2">
+                        <i class="fa-brands fa-discord"></i> Copy Discord
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- audio -->
     <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <script>
-        // copy discord
-        const copyBtn = document.getElementById("copyDiscord");
-        copyBtn.addEventListener("click", async () => {
-            try {
-                await navigator.clipboard.writeText("b3sttiee");
-                const prev = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                setTimeout(() => copyBtn.innerHTML = prev, 1800);
-            } catch (e) {
-                alert("Could not copy :(");
-            }
+        // copy discord (both buttons)
+        const copyText = "b3sttiee";
+        function setCopied(btn) {
+            const old = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+            setTimeout(() => btn.innerHTML = old, 1700);
+        }
+        const copy1 = document.getElementById("copyDiscord");
+        const copy2 = document.getElementById("copyDiscord2");
+        [copy1, copy2].forEach(btn => {
+            btn.addEventListener("click", async () => {
+                try {
+                    await navigator.clipboard.writeText(copyText);
+                    setCopied(btn);
+                } catch (err) {
+                    alert("Nie udało się skopiować :(");
+                }
+            });
         });
 
-        // music toggle
+        // music
         const audio = document.getElementById("bgMusic");
         const toggleBtn = document.getElementById("toggleMusic");
-        let isPlaying = false;
-
+        let playing = false;
         toggleBtn.addEventListener("click", () => {
-            if (!isPlaying) {
+            if (!playing) {
                 audio.play().then(() => {
-                    isPlaying = true;
+                    playing = true;
                     toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
                 }).catch(() => {
-                    alert("Przeglądarka zablokowała autoplay. Kliknij jeszcze raz :)");
+                    alert("Kliknij jeszcze raz, przeglądarka blokuje autoplay.");
                 });
             } else {
                 audio.pause();
-                isPlaying = false;
+                playing = false;
                 toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
             }
         });
