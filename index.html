@@ -1,465 +1,463 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>B3sttieee | Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            --bg: radial-gradient(circle at top, #0d0d11 0%, #020204 55%, #000 100%);
-            --panel: rgba(9, 9, 9, 0.35);
-            --panel-border: rgba(255, 255, 255, 0.04);
-            --accent: #ff4769;
-            --accent2: #ff8b4f;
-            --text: #ffffff;
-            --muted: rgba(255,255,255,.7);
-            --radius: 22px;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--bg);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.3rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .blob {
-            position: fixed;
-            width: 30rem;
-            height: 30rem;
-            filter: blur(70px);
-            opacity: .35;
-            animation: float 16s ease-in-out infinite alternate;
-            z-index: -3;
-        }
-        .blob.b1 { right: -6rem; top: -6rem; background: radial-gradient(circle, rgba(255,71,105,.6), rgba(255,71,105,0)); }
-        .blob.b2 { left: -5rem; bottom: -7rem; background: radial-gradient(circle, rgba(0,169,255,.5), rgba(0,169,255,0)); animation-delay: 4s; }
-        @keyframes float { to { transform: translateY(2.4rem); opacity: .18; } }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B3sttieee | Patryk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: radial-gradient(circle at top, #0d0d11 0%, #020204 55%, #000 100%);
+      --panel: rgba(9, 9, 9, 0.35);
+      --panel-border: rgba(255, 255, 255, 0.04);
+      --accent: #ff4769;
+      --accent2: #ff8b4f;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,.7);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .blob {
+      position: fixed;
+      width: 30rem;
+      height: 30rem;
+      filter: blur(70px);
+      opacity: .35;
+      animation: float 16s ease-in-out infinite alternate;
+      z-index: -3;
+    }
+    .blob.b1 { right: -6rem; top: -6rem; background: radial-gradient(circle, rgba(255,71,105,.6), rgba(255,71,105,0)); }
+    .blob.b2 { left: -5rem; bottom: -7rem; background: radial-gradient(circle, rgba(0,169,255,.5), rgba(0,169,255,0)); animation-delay: 4s; }
+    @keyframes float { to { transform: translateY(2.4rem); opacity: .18; } }
 
-        .layout {
-            width: min(1180px, 100%);
-            display: grid;
-            grid-template-columns: 1.1fr .6fr;
-            gap: 1.3rem;
-        }
-        @media (max-width: 900px) {
-            .layout {
-                grid-template-columns: 1fr;
-                max-width: 540px;
-            }
-        }
+    .layout {
+      width: min(1180px, 100%);
+      display: grid;
+      grid-template-columns: 1.1fr .6fr;
+      gap: 1.3rem;
+    }
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+      }
+    }
 
-        .tilt {
-            transition: transform .25s ease, box-shadow .25s ease;
-            transform-style: preserve-3d;
-        }
-        .tilt:hover {
-            transform: perspective(1000px) rotateX(-2deg) rotateY(2.5deg) translateY(-2px);
-            box-shadow: 0 20px 50px rgba(0,0,0,.35);
-        }
+    .tilt {
+      transition: transform .25s ease, box-shadow .25s ease;
+      transform-style: preserve-3d;
+    }
+    .tilt:hover {
+      transform: perspective(1000px) rotateX(-2deg) rotateY(2.5deg) translateY(-2px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
 
-        .card {
-            background: radial-gradient(circle at 12% 15%, rgba(255,71,105,.08), rgba(0,0,0,0) 50%), rgba(12,12,12,.45);
-            border: 1px solid var(--panel-border);
-            border-radius: var(--radius);
-            backdrop-filter: blur(12px);
-        }
+    .card {
+      background: radial-gradient(circle at 12% 15%, rgba(255,71,105,.08), rgba(0,0,0,0) 50%), rgba(12,12,12,.45);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+    }
 
-        .profile {
-            padding: 1.5rem 1.4rem 1.1rem;
-        }
-        .top-row {
-            display: flex;
-            gap: 1.1rem;
-            align-items: center;
-        }
-        .avatar-ring {
-            width: 120px;
-            height: 120px;
-            border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 71, 105, .6), rgba(255, 71, 105, 0));
-            padding: 3px;
-            display: grid;
-            place-items: center;
-        }
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-            border: 2px solid rgba(255,255,255,.35);
-            background: #0d0d0d center center / cover no-repeat;
-            background-image: url("avatar.gif?v=1");
-        }
-        .name-box h1 {
-            font-size: 1.55rem;
-            margin: 0;
-            display: flex;
-            gap: .4rem;
-            align-items: center;
-        }
-        .online-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: .35rem;
-            background: rgba(58, 255, 142, .1);
-            border: 1px solid rgba(58,255,142,.25);
-            color: #e5fff1;
-            border-radius: 999px;
-            padding: .15rem .55rem .22rem;
-            font-size: .56rem;
-        }
-        .sub {
-            font-size: .7rem;
-            margin-top: .35rem;
-            color: var(--muted);
-        }
-        .about {
-            margin-top: 1.1rem;
-            font-size: .84rem;
-            line-height: 1.5;
-            color: #fff;
-        }
-        .btn-row {
-            display: flex;
-            gap: .65rem;
-            flex-wrap: wrap;
-            margin-top: 1.25rem;
-        }
-        .btn {
-            border: none;
-            border-radius: 15px;
-            padding: .6rem .9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: .4rem;
-            font-size: .8rem;
-            cursor: pointer;
-            transition: transform .12s ease-out;
-            color: #fff;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-        }
-        .btn-dark {
-            background: rgba(255,255,255,.055);
-            border: 1px solid rgba(255,255,255,.02);
-        }
-        .btn:hover { transform: translateY(-1px); }
+    /* LEFT */
+    .profile {
+      padding: 1.5rem 1.4rem 1.1rem;
+    }
+    .top-row {
+      display: flex;
+      gap: 1.1rem;
+      align-items: center;
+    }
+    .avatar-ring {
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 71, 105, .55), rgba(255, 71, 105, 0));
+      padding: 3px;
+      display: grid;
+      place-items: center;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      border: 2px solid rgba(255,255,255,.35);
+      object-fit: cover;
+      background: #0d0d0d;
+    }
+    .name-box h1 {
+      font-size: 1.55rem;
+      margin: 0;
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+    }
+    .online-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(58, 255, 142, .1);
+      border: 1px solid rgba(58,255,142,.25);
+      color: #e5fff1;
+      border-radius: 999px;
+      padding: .15rem .55rem .22rem;
+      font-size: .56rem;
+    }
+    .sub {
+      font-size: .7rem;
+      margin-top: .35rem;
+      color: var(--muted);
+    }
+    .about {
+      margin-top: 1.1rem;
+      font-size: .83rem;
+      line-height: 1.5;
+      color: #fff;
+    }
+    .about strong {
+      font-weight: 600;
+    }
+    .btn-row {
+      display: flex;
+      gap: .65rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .btn {
+      border: none;
+      border-radius: 15px;
+      padding: .6rem .9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .8rem;
+      cursor: pointer;
+      transition: transform .12s ease-out;
+      color: #fff;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    }
+    .btn-dark {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.02);
+    }
+    .btn:hover { transform: translateY(-1px); }
 
-        .stats {
-            margin-top: 1.3rem;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(90px, 1fr));
-            gap: .8rem;
-        }
-        .stat-box {
-            background: rgba(255,255,255,.02);
-            border: 1px solid rgba(255,255,255,.015);
-            border-radius: 14px;
-            padding: .55rem;
-            text-align: center;
-        }
-        .stat-label {
-            font-size: .6rem;
-            text-transform: uppercase;
-            color: rgba(255,255,255,.75);
-        }
-        .stat-value {
-            font-size: .9rem;
-            margin-top: .2rem;
-            font-weight: 600;
-            color: #fff;
-        }
-        .footer {
-            margin-top: 1.2rem;
-            font-size: .6rem;
-            color: rgba(255,255,255,.35);
-            text-align: center;
-        }
+    .stats {
+      margin-top: 1.3rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(90px, 1fr));
+      gap: .8rem;
+    }
+    .stat-box {
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.015);
+      border-radius: 14px;
+      padding: .55rem;
+      text-align: center;
+    }
+    .stat-label {
+      font-size: .6rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+    }
+    .stat-value {
+      font-size: .9rem;
+      margin-top: .2rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .footer {
+      margin-top: 1.2rem;
+      font-size: .6rem;
+      color: rgba(255,255,255,.35);
+      text-align: center;
+    }
 
-        .side {
-            display: flex;
-            flex-direction: column;
-            gap: 1.05rem;
-        }
-        .panel-title {
-            font-size: .6rem;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-            color: rgba(255,255,255,.65);
-            margin-bottom: .55rem;
-        }
-        .panel-box {
-            background: rgba(12,12,12,0.4);
-            border: 1px solid rgba(255,255,255,.02);
-            border-radius: 18px;
-            backdrop-filter: blur(10px);
-            padding: .75rem .9rem .9rem;
-        }
-        .music-line {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: .8rem;
-        }
-        .music-info small {
-            font-size: .6rem;
-            color: rgba(255,255,255,.45);
-        }
-        .music-info div {
-            font-size: .78rem;
-            color: #fff;
-        }
-        .music-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.04);
-            background: rgba(255,255,255,.02);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            color: #fff;
-        }
-        .volume-wrap {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            margin-top: .65rem;
-        }
-        .volume-wrap input[type="range"] {
-            width: 100%;
-            accent-color: #ff4769;
-        }
-        .tag-pill {
-            display: inline-flex;
-            gap: .35rem;
-            align-items: center;
-            background: rgba(255,255,255,.045);
-            border: 1px solid rgba(255,255,255,.01);
-            border-radius: 999px;
-            padding: .3rem .6rem;
-            font-size: .66rem;
-            margin: .25rem .25rem 0 0;
-            color: #fff;
-        }
-        .link-btn {
-            width: 100%;
-            background: rgba(255,255,255,.03);
-            border: 1px solid rgba(255,255,255,.01);
-            border-radius: 14px;
-            padding: .4rem .55rem;
-            display: flex;
-            gap: .45rem;
-            align-items: center;
-            font-size: .75rem;
-            margin-bottom: .45rem;
-            cursor: pointer;
-            color: #fff;
-        }
-        @media (max-width: 900px) {
-            .profile { padding: 1.3rem 1rem; }
-            .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
-            .tilt:hover { transform: none; }
-        }
+    /* RIGHT */
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.05rem;
+    }
+    .panel-title {
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.65);
+      margin-bottom: .55rem;
+    }
+    .panel-box {
+      background: rgba(12,12,12,0.4);
+      border: 1px solid rgba(255,255,255,.02);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      padding: .75rem .9rem .9rem;
+    }
+    .music-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+    }
+    .music-info small {
+      font-size: .58rem;
+      color: rgba(255,255,255,.35);
+    }
+    .music-info div {
+      font-size: .74rem;
+      color: #fff;
+      font-weight: 500;
+    }
+    .music-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.04);
+      background: rgba(255,255,255,.02);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: #fff;
+    }
+    .volume-wrap {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .6rem;
+    }
+    .volume-wrap input[type="range"] {
+      width: 100%;
+      accent-color: #ff4769;
+      height: 3px;
+    }
+    .tag-pill {
+      display: inline-flex;
+      gap: .35rem;
+      align-items: center;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.01);
+      border-radius: 999px;
+      padding: .3rem .6rem;
+      font-size: .66rem;
+      margin: .25rem .25rem 0 0;
+      color: #fff;
+    }
+    .link-btn {
+      width: 100%;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.01);
+      border-radius: 14px;
+      padding: .4rem .55rem;
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+      font-size: .75rem;
+      margin-bottom: .45rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .profile { padding: 1.3rem 1rem; }
+      .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .tilt:hover { transform: none; }
+    }
 
-        #ytplayer {
-            position: absolute;
-            width: 0;
-            height: 0;
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
+    #ytplayer {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
 
-    <div class="layout">
-        <!-- LEWA -->
-        <div class="card profile tilt">
-            <div class="top-row">
-                <div class="avatar-ring">
-                    <div class="avatar"></div>
-                </div>
-                <div class="name-box">
-                    <h1>B3sttieee <span style="font-size:.78rem;">🔥</span></h1>
-                    <div class="online-pill">
-                        <span style="width:7px;height:7px;border-radius:999px;background:#3aff8e;display:inline-block;"></span>
-                        online
-                    </div>
-                    <p class="sub">Roblox • Discord • links</p>
-                </div>
-            </div>
-
-            <p class="about">
-                Yo! To jest mój profil na szybkie linki. Roblox niżej 👇<br>
-                Discord do skopiowania: <strong>b3sttiee</strong>
-            </p>
-
-            <div class="btn-row">
-                <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
-                    <i class="fa-brands fa-roblox"></i> Roblox profile
-                </a>
-                <button class="btn btn-dark" id="copyDiscord">
-                    <i class="fa-brands fa-discord"></i> Copy Discord
-                </button>
-                <button class="btn btn-dark" id="scrollMusic">
-                    <i class="fa-solid fa-music"></i> Muzyka
-                </button>
-            </div>
-
-            <div class="stats">
-                <div class="stat-box">
-                    <div class="stat-label">discord</div>
-                    <div class="stat-value">b3sttiee</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">roblox link</div>
-                    <div class="stat-value">1</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">profile</div>
-                    <div class="stat-value">public</div>
-                </div>
-            </div>
-
-            <p class="footer">made on GitHub Pages 💜</p>
+  <div class="layout">
+    <!-- LEFT -->
+    <div class="card profile tilt">
+      <div class="top-row">
+        <div class="avatar-ring">
+          <!-- TUTAJ ładuje się avatar.gif -->
+          <img src="avatar.gif?v=1" alt="avatar" class="avatar-img" onerror="this.src='https://via.placeholder.com/120/0d0d0d/ffffff?text=%20';" />
         </div>
-
-        <!-- PRAWA -->
-        <div class="side">
-            <div class="panel-box tilt" id="musicPanel">
-                <div class="panel-title">player</div>
-                <div class="music-line">
-                    <div class="music-info">
-                        <small>teraz leci</small>
-                        <div>YouTube: MvVWqhVlUzk</div>
-                    </div>
-                    <button class="music-btn" id="toggleMusic">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-                </div>
-                <div class="volume-wrap">
-                    <i class="fa-solid fa-volume-low"></i>
-                    <input type="range" id="volumeSlider" min="0" max="100" value="30">
-                </div>
-            </div>
-
-            <div class="panel-box tilt">
-                <div class="panel-title">tags</div>
-                <div>
-                    <span class="tag-pill"><i class="fa-brands fa-roblox"></i> roblox</span>
-                    <span class="tag-pill"><i class="fa-solid fa-link"></i> bio link</span>
-                    <span class="tag-pill"><i class="fa-solid fa-code"></i> github pages</span>
-                    <span class="tag-pill"><i class="fa-brands fa-discord"></i> discord</span>
-                </div>
-            </div>
-
-            <div class="panel-box tilt">
-                <div class="panel-title">other links</div>
-                <a class="link-btn" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
-                    <i class="fa-brands fa-roblox"></i> Roblox
-                </a>
-                <button class="link-btn" id="copyDiscord2">
-                    <i class="fa-brands fa-discord"></i> Copy Discord
-                </button>
-            </div>
+        <div class="name-box">
+          <h1>B3sttieee <span style="font-size:.78rem;">🔥</span></h1>
+          <div class="online-pill">
+            <span style="width:7px;height:7px;border-radius:999px;background:#3aff8e;display:inline-block;"></span>
+            online
+          </div>
+          <p class="sub">Patryk • 20 lat</p>
         </div>
+      </div>
+
+      <p class="about">
+        Hej, jestem <strong>Patryk</strong> (B3sttieee). Mam <strong>20 lat</strong>, lubię grać i z nudów robię sobie małe skrypty / stronki – tak jak ta 🤙<br>
+        Kocham muzykę, więc niżej masz playera. Roblox też tu jest 👇
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
+          <i class="fa-brands fa-roblox"></i> Roblox profile
+        </a>
+        <button class="btn btn-dark" id="copyDiscord">
+          <i class="fa-brands fa-discord"></i> Copy Discord
+        </button>
+        <button class="btn btn-dark" id="scrollMusic">
+          <i class="fa-solid fa-music"></i> Player
+        </button>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-label">discord</div>
+          <div class="stat-value">b3sttiee</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">gram w</div>
+          <div class="stat-value">roblox 🎮</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">skrypty</div>
+          <div class="stat-value">for fun 💻</div>
+        </div>
+      </div>
+
+      <p class="footer">made on GitHub Pages 💜</p>
     </div>
 
-    <!-- ukryty youtube player -->
-    <div id="ytplayer"></div>
+    <!-- RIGHT -->
+    <div class="side">
+      <div class="panel-box tilt" id="musicPanel">
+        <div class="panel-title">player</div>
+        <div class="music-line">
+          <div class="music-info">
+            <small>teraz leci</small>
+            <div>Pezet – Nitro (YouTube)</div>
+          </div>
+          <button class="music-btn" id="toggleMusic">
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+        <div class="volume-wrap">
+          <i class="fa-solid fa-volume-low"></i>
+          <input type="range" id="volumeSlider" min="0" max="100" value="30">
+        </div>
+        <small style="display:block;margin-top:.35rem;color:rgba(255,255,255,.32);font-size:.58rem;">
+          jeśli cisza – kliknij ▶ (przeglądarka blokuje autoplay)
+        </small>
+      </div>
 
-    <!-- YouTube API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-        // kopiowanie discord
-        const copyText = "b3sttiee";
-        [document.getElementById("copyDiscord"), document.getElementById("copyDiscord2")].forEach(btn => {
-            if (!btn) return;
-            btn.addEventListener("click", async () => {
-                try {
-                    await navigator.clipboard.writeText(copyText);
-                    const old = btn.innerHTML;
-                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                    setTimeout(() => btn.innerHTML = old, 1500);
-                } catch (e) {
-                    alert("Nie udało się skopiować :(");
-                }
-            });
-        });
+      <div class="panel-box tilt">
+        <div class="panel-title">tags</div>
+        <div>
+          <span class="tag-pill"><i class="fa-solid fa-user"></i> patryk</span>
+          <span class="tag-pill"><i class="fa-brands fa-roblox"></i> roblox</span>
+          <span class="tag-pill"><i class="fa-solid fa-code"></i> skrypty</span>
+          <span class="tag-pill"><i class="fa-solid fa-music"></i> muzyka</span>
+        </div>
+      </div>
 
-        // scroll do playera
-        document.getElementById("scrollMusic").addEventListener("click", () => {
-            document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
-        });
+      <div class="panel-box tilt">
+        <div class="panel-title">other links</div>
+        <a class="link-btn" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
+          <i class="fa-brands fa-roblox"></i> Roblox
+        </a>
+      </div>
+    </div>
+  </div>
 
-        // YouTube player
-        let ytPlayer;
-        let isPlaying = false;
-        const VOLUME_DEFAULT = 30;
+  <!-- ukryty youtube player -->
+  <div id="ytplayer"></div>
 
-        function onYouTubeIframeAPIReady() {
-            ytPlayer = new YT.Player('ytplayer', {
-                height: '0',
-                width: '0',
-                videoId: 'MvVWqhVlUzk',
-                playerVars: {
-                    autoplay: 1,     // próbujemy od razu
-                    controls: 0,
-                    loop: 1,
-                    playlist: 'MvVWqhVlUzk'
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
+  <!-- YouTube API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    // kopiowanie discord
+    const copyText = "b3sttiee";
+    document.getElementById("copyDiscord").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(copyText);
+        const btn = document.getElementById("copyDiscord");
+        const old = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        setTimeout(() => btn.innerHTML = old, 1500);
+      } catch (e) {
+        alert("Nie udało się skopiować :(");
+      }
+    });
+
+    // scroll do playera
+    document.getElementById("scrollMusic").addEventListener("click", () => {
+      document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
+    });
+
+    // YouTube player
+    let ytPlayer;
+    let isPlaying = false;
+    const VOLUME_DEFAULT = 30;
+
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('ytplayer', {
+        height: '0',
+        width: '0',
+        videoId: 'MvVWqhVlUzk',   // Pezet - Nitro
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          loop: 1,
+          playlist: 'MvVWqhVlUzk',
+          playsinline: 1
+        },
+        events: {
+          'onReady': onPlayerReady
         }
-        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+      });
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
-        function onPlayerReady() {
-            const toggleBtn = document.getElementById("toggleMusic");
-            const vol = document.getElementById("volumeSlider");
+    function onPlayerReady() {
+      const toggleBtn = document.getElementById("toggleMusic");
+      const vol = document.getElementById("volumeSlider");
 
-            // ustaw od razu 30%
-            ytPlayer.setVolume(VOLUME_DEFAULT);
+      ytPlayer.setVolume(VOLUME_DEFAULT);
 
-            // próbujemy wystartować
-            try {
-                ytPlayer.playVideo();
-                isPlaying = true;
-                toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-            } catch (e) {
-                // jak się nie uda, user kliknie ręcznie
-            }
-
-            toggleBtn.addEventListener("click", () => {
-                if (!isPlaying) {
-                    ytPlayer.playVideo();
-                    isPlaying = true;
-                    toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                } else {
-                    ytPlayer.pauseVideo();
-                    isPlaying = false;
-                    toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-                }
-            });
-
-            vol.addEventListener("input", () => {
-                const v = parseInt(vol.value, 10);
-                ytPlayer.setVolume(v);
-            });
+      toggleBtn.addEventListener("click", () => {
+        if (!isPlaying) {
+          ytPlayer.unMute();
+          ytPlayer.setVolume(vol.value);
+          ytPlayer.playVideo();
+          isPlaying = true;
+          toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        } else {
+          ytPlayer.pauseVideo();
+          isPlaying = false;
+          toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
-    </script>
+      });
+
+      vol.addEventListener("input", () => {
+        ytPlayer.setVolume(parseInt(vol.value, 10));
+      });
+    }
+  </script>
 </body>
 </html>
 
