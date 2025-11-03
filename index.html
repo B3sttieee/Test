@@ -1,28 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitHub Pages test</title>
+    <title>B3sttieee | Bio</title>
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
-            line-height: 1.6;
+        :root {
+            --card-bg: rgba(15, 15, 15, 0.55);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent: #ff4d6d;
+            --text: #ffffff;
         }
-        .box {
-            background: #f5f5f5;
-            padding: 20px;
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #000;
+            color: var(--text);
+            position: relative;
+        }
+        /* background gif */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("https://media.tenor.com/HTaeSEKuXyQAAAAC/solo-leveling-sung-jin-woo.gif") center center / cover no-repeat fixed;
+            filter: brightness(0.4);
+            z-index: -2;
+        }
+        /* overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.95) 100%);
+            z-index: -1;
+        }
+        .card {
+            width: min(95%, 420px);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            padding: 1.6rem 1.6rem 1.4rem;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+        }
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 999px;
+            margin: 0 auto 1rem;
+            border: 3px solid rgba(255,255,255,0.45);
+            background: url("https://media.tenor.com/HTaeSEKuXyQAAAAC/solo-leveling-sung-jin-woo.gif") center center / cover no-repeat;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.25);
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+        }
+        .tag {
+            font-size: .78rem;
+            opacity: .9;
+            margin-top: .35rem;
+        }
+        .about {
+            margin-top: 1rem;
+            font-size: .86rem;
+            line-height: 1.45;
+            opacity: .9;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-top: 1.4rem;
+        }
+        .btn {
+            width: 100%;
+            border: none;
             border-radius: 12px;
+            padding: .6rem .9rem;
+            font-size: .85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            cursor: pointer;
+            transition: transform .12s ease-out, box-shadow .12s ease-out;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ff4d6d 0%, #ff914d 100%);
+            color: #fff;
+            font-weight: 600;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        }
+        .footer {
+            margin-top: 1.3rem;
+            font-size: .65rem;
+            opacity: .6;
+        }
+        @media (max-width: 460px) {
+            .card {
+                padding: 1.35rem 1.05rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.35rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Hello from GitHub Pages 👋</h1>
-    <p>This is a test page to check if GitHub Pages works.</p>
-    <div class="box">
-        <p>If you see this, it works 🎉</p>
-    </div>
+    <main class="card">
+        <div class="avatar" aria-label="Profil"></div>
+        <h1>B3sttieee <span style="font-size:.85rem;">🔥</span></h1>
+        <p class="tag">Solo Leveling enjoyer • Roblox • Discord</p>
+
+        <p class="about">
+            Yo! Tu mój mały profil do wrzucania linków. Roblox niżej 👇<br>
+            Discord do skopiowania: <strong>b3sttiee</strong>
+        </p>
+
+        <div class="buttons">
+            <!-- Roblox -->
+            <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank" rel="noopener">
+                <i class="fa-brands fa-roblox"></i>
+                Roblox profile
+            </a>
+
+            <!-- Discord copy -->
+            <button class="btn btn-secondary" id="copyDiscord">
+                <i class="fa-brands fa-discord"></i>
+                Copy Discord (b3sttiee)
+            </button>
+        </div>
+
+        <p class="footer">made on GitHub Pages 💜</p>
+    </main>
+
+    <script>
+        const copyBtn = document.getElementById("copyDiscord");
+        copyBtn.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText("b3sttiee");
+                const prev = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                setTimeout(() => {
+                    copyBtn.innerHTML = prev;
+                }, 1800);
+            } catch (err) {
+                alert("Could not copy 😭: " + err);
+            }
+        });
+    </script>
 </body>
 </html>
