@@ -95,7 +95,6 @@
             border-radius: inherit;
             border: 2px solid rgba(255,255,255,.35);
             background: #0d0d0d center center / cover no-repeat;
-            /* czyta avatar.gif z repo, ?v=1 żeby odświeżyć */
             background-image: url("avatar.gif?v=1");
         }
         .name-box h1 {
@@ -229,6 +228,16 @@
             cursor: pointer;
             color: #fff;
         }
+        .volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin-top: .65rem;
+        }
+        .volume-wrap input[type="range"] {
+            width: 100%;
+            accent-color: #ff4769;
+        }
         .tag-pill {
             display: inline-flex;
             gap: .35rem;
@@ -261,7 +270,6 @@
             .tilt:hover { transform: none; }
         }
 
-        /* ukryty youtube player */
         #ytplayer {
             position: absolute;
             width: 0;
@@ -276,7 +284,7 @@
     <div class="blob b2"></div>
 
     <div class="layout">
-        <!-- LEFT -->
+        <!-- LEWA -->
         <div class="card profile tilt">
             <div class="top-row">
                 <div class="avatar-ring">
@@ -327,7 +335,7 @@
             <p class="footer">made on GitHub Pages 💜</p>
         </div>
 
-        <!-- RIGHT -->
+        <!-- PRAWA -->
         <div class="side">
             <div class="panel-box tilt" id="musicPanel">
                 <div class="panel-title">player</div>
@@ -339,6 +347,10 @@
                     <button class="music-btn" id="toggleMusic">
                         <i class="fa-solid fa-play"></i>
                     </button>
+                </div>
+                <div class="volume-wrap">
+                    <i class="fa-solid fa-volume-low"></i>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="30">
                 </div>
             </div>
 
@@ -367,13 +379,12 @@
     <!-- ukryty youtube player -->
     <div id="ytplayer"></div>
 
-    <!-- YouTube IFrame API -->
+    <!-- YouTube API -->
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // copy discord
+        // kopiowanie discord
         const copyText = "b3sttiee";
-        const copyButtons = [document.getElementById("copyDiscord"), document.getElementById("copyDiscord2")];
-        copyButtons.forEach(btn => {
+        [document.getElementById("copyDiscord"), document.getElementById("copyDiscord2")].forEach(btn => {
             if (!btn) return;
             btn.addEventListener("click", async () => {
                 try {
@@ -387,7 +398,7 @@
             });
         });
 
-        // scroll to music
+        // scroll do playera
         document.getElementById("scrollMusic").addEventListener("click", () => {
             document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
         });
@@ -395,14 +406,15 @@
         // YouTube player
         let ytPlayer;
         let isPlaying = false;
+        const VOLUME_DEFAULT = 30;
 
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('ytplayer', {
                 height: '0',
                 width: '0',
-                videoId: 'MvVWqhVlUzk', // <-- twój ID
+                videoId: 'MvVWqhVlUzk',
                 playerVars: {
-                    autoplay: 0,
+                    autoplay: 1,     // próbujemy od razu
                     controls: 0,
                     loop: 1,
                     playlist: 'MvVWqhVlUzk'
@@ -412,9 +424,24 @@
                 }
             });
         }
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
         function onPlayerReady() {
             const toggleBtn = document.getElementById("toggleMusic");
+            const vol = document.getElementById("volumeSlider");
+
+            // ustaw od razu 30%
+            ytPlayer.setVolume(VOLUME_DEFAULT);
+
+            // próbujemy wystartować
+            try {
+                ytPlayer.playVideo();
+                isPlaying = true;
+                toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            } catch (e) {
+                // jak się nie uda, user kliknie ręcznie
+            }
+
             toggleBtn.addEventListener("click", () => {
                 if (!isPlaying) {
                     ytPlayer.playVideo();
@@ -426,9 +453,13 @@
                     toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
                 }
             });
+
+            vol.addEventListener("input", () => {
+                const v = parseInt(vol.value, 10);
+                ytPlayer.setVolume(v);
+            });
         }
-        // expose for YouTube
-        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
     </script>
 </body>
 </html>
+
