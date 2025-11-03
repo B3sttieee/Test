@@ -7,79 +7,78 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
-            --bg1: #0a0a0f;
-            --bg2: #14141d;
-            --card: rgba(12, 12, 12, 0.35);
-            --stroke: rgba(255, 255, 255, 0.06);
-            --highlight: #ff4d6d;
-            --highlight2: #ff914d;
-            --text: #ffffff;
-            --muted: rgba(255,255,255,.6);
-            --radius-lg: 22px;
+            --bg: radial-gradient(circle at top, #0b0b0f 0%, #000 60%, #000 100%);
+            --panel: rgba(9, 9, 9, 0.35);
+            --panel-border: rgba(255, 255, 255, 0.04);
+            --accent: #ff4d6d;
+            --accent2: #ff934f;
+            --text: #fff;
+            --muted: rgba(255,255,255,.55);
+            --radius: 22px;
         }
         * { box-sizing: border-box; }
         body {
             margin: 0;
             min-height: 100vh;
+            background: var(--bg);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at top, #000 0%, #020204 60%, #000 100%);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            color: var(--text);
-            overflow: hidden;
+            padding: 1.5rem;
             position: relative;
+            overflow: hidden;
         }
-
-        /* background animated blobs */
-        .bg-blob {
+        /* background blobs */
+        .blob {
             position: fixed;
-            width: 34rem;
-            height: 34rem;
-            background: radial-gradient(circle, rgba(255,77,109,.2), rgba(255,77,109,0));
+            width: 28rem;
+            height: 28rem;
             filter: blur(70px);
-            animation: float 18s ease-in-out infinite alternate;
+            opacity: .35;
+            animation: float 16s ease-in-out infinite alternate;
             z-index: -3;
         }
-        .bg-blob.b1 { top: -10rem; right: -3rem; }
-        .bg-blob.b2 { bottom: -12rem; left: -5rem; animation-delay: 4s; background: radial-gradient(circle, rgba(0,140,255,.25), rgba(0,140,255,0)); }
-        @keyframes float {
-            to { transform: translateY(2.5rem); opacity: .3; }
-        }
+        .blob.b1 { right: -6rem; top: -6rem; background: radial-gradient(circle, rgba(255,77,109,.7), rgba(255,77,109,0)); }
+        .blob.b2 { left: -6rem; bottom: -8rem; background: radial-gradient(circle, rgba(0,170,255,.6), rgba(0,170,255,0)); animation-delay: 4s; }
+        @keyframes float { to { transform: translateY(2.4rem); opacity: .18; } }
 
-        .wrapper {
-            width: min(100%, 1080px);
-            padding: clamp(1.2rem, 2vw, 1.8rem);
+        .layout {
+            width: min(1180px, 100%);
             display: grid;
-            gap: clamp(1.2rem, 2vw, 1.6rem);
-            grid-template-columns: 1.3fr .7fr;
+            grid-template-columns: 1.1fr .6fr;
+            gap: 1.3rem;
         }
-        @media (max-width: 880px) {
-            .wrapper {
+        @media (max-width: 900px) {
+            .layout {
                 grid-template-columns: 1fr;
-                max-width: 520px;
+                max-width: 540px;
             }
         }
 
-        .profile-card {
-            background: radial-gradient(circle at 10% 10%, rgba(255, 77, 109, 0.08), rgba(0,0,0,0) 50%), rgba(14,14,16,0.45);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: var(--radius-lg);
-            backdrop-filter: blur(10px);
-            padding: clamp(1.4rem, 2vw, 1.9rem);
-            position: relative;
+        .card {
+            background: radial-gradient(circle at 10% 10%, rgba(255,77,109,.08), rgba(0,0,0,0) 50%), rgba(13,13,13,0.5);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius);
+            backdrop-filter: blur(13px);
             box-shadow: 0 18px 40px rgba(0,0,0,0.35);
         }
-        .avatar-row {
+
+        /* left/profile */
+        .profile {
+            padding: 1.5rem 1.4rem 1.2rem;
+        }
+        .top-row {
             display: flex;
             gap: 1.1rem;
             align-items: center;
         }
-        .avatar-wrap {
-            width: 108px;
-            height: 108px;
+        .avatar-ring {
+            width: 120px;
+            height: 120px;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255,77,109,.6) 0%, rgba(255,77,109,0) 55%);
+            background: radial-gradient(circle, rgba(255,77,109,.5), rgba(255,77,109,0));
             padding: 3px;
             display: grid;
             place-items: center;
@@ -88,187 +87,191 @@
             width: 100%;
             height: 100%;
             border-radius: inherit;
-            border: 2px solid rgba(255,255,255,0.33);
-            background: #101010 center center / cover no-repeat;
-            background-image: url("avatar.gif");
+            border: 2px solid rgba(255,255,255,.3);
+            background: #0d0d0d;
+            object-fit: cover;
         }
-        .name-block h1 {
-            font-size: 1.55rem;
+        .name-box h1 {
+            font-size: 1.6rem;
             margin: 0;
             display: flex;
-            gap: .45rem;
+            gap: .4rem;
             align-items: center;
         }
-        .badge-online {
-            background: rgba(44, 255, 133, .08);
-            border: 1px solid rgba(44,255,133,0.13);
-            color: #9dffbf;
-            font-size: .58rem;
-            padding: .2rem .5rem .28rem;
-            border-radius: 999px;
+        .online-pill {
             display: inline-flex;
-            gap: .2rem;
             align-items: center;
+            gap: .35rem;
+            background: rgba(58, 255, 142, .1);
+            border: 1px solid rgba(58,255,142,.25);
+            color: #b8ffd4;
+            border-radius: 999px;
+            padding: .15rem .55rem .22rem;
+            font-size: .55rem;
+            text-transform: lowercase;
         }
         .sub {
             font-size: .72rem;
-            margin-top: .25rem;
             color: var(--muted);
+            margin-top: .35rem;
         }
         .about {
-            margin-top: 1.05rem;
-            font-size: .83rem;
-            line-height: 1.45;
+            margin-top: 1.2rem;
+            font-size: .84rem;
+            line-height: 1.5;
         }
 
         .btn-row {
             display: flex;
-            gap: .7rem;
-            margin-top: 1.3rem;
+            gap: .65rem;
+            margin-top: 1.25rem;
             flex-wrap: wrap;
         }
         .btn {
             border: none;
-            border-radius: 14px;
+            border-radius: 15px;
             padding: .6rem .9rem;
             display: inline-flex;
             align-items: center;
             gap: .4rem;
-            font-size: .78rem;
+            font-size: .8rem;
             cursor: pointer;
-            transition: transform .12s ease-out, box-shadow .12s ease-out;
+            transition: transform .12s ease-out;
         }
         .btn-primary {
-            background: linear-gradient(135deg, var(--highlight) 0%, var(--highlight2) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
             color: #fff;
-            box-shadow: 0 8px 21px rgba(255, 77, 109, 0.35);
         }
-        .btn-secondary {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.02);
+        .btn-dark {
+            background: rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.015);
             color: #fff;
         }
         .btn:hover { transform: translateY(-1px); }
 
-        /* stats section */
-        .stats-grid {
+        .stats {
+            margin-top: 1.3rem;
             display: grid;
             grid-template-columns: repeat(3, minmax(90px, 1fr));
-            margin-top: 1.6rem;
-            gap: .75rem;
+            gap: .8rem;
         }
-        .stat {
-            background: radial-gradient(circle, rgba(255,255,255,0.025), rgba(255,255,255,0));
-            border: 1px solid rgba(255,255,255,0.015);
-            border-radius: 14px;
-            padding: .55rem .45rem;
+        .stat-box {
+            background: rgba(255,255,255,.015);
+            border: 1px solid rgba(255,255,255,.008);
+            border-radius: 15px;
+            padding: .6rem;
             text-align: center;
         }
         .stat-label {
-            font-size: .62rem;
-            color: rgba(255,255,255,.45);
+            font-size: .6rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.44);
+            letter-spacing: .04em;
         }
         .stat-value {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: .9rem;
             margin-top: .2rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 1.4rem;
+            font-size: .6rem;
+            color: rgba(255,255,255,.35);
+            text-align: center;
         }
 
         /* right side */
-        .side-panel {
-            background: rgba(12,12,12,0.3);
-            border: 1px solid rgba(255,255,255,0.02);
-            border-radius: 18px;
-            backdrop-filter: blur(9px);
-            padding: 1rem .95rem 1rem;
+        .side {
             display: flex;
             flex-direction: column;
-            gap: 1.1rem;
-            height: fit-content;
+            gap: 1rem;
         }
         .panel-title {
-            font-size: .68rem;
-            color: rgba(255,255,255,.46);
+            font-size: .6rem;
             text-transform: uppercase;
-            letter-spacing: .12rem;
+            letter-spacing: .08em;
+            color: rgba(255,255,255,.5);
+            margin-bottom: .5rem;
         }
-        .music-box,
-        .links-box {
-            background: radial-gradient(circle, rgba(0,0,0,0.14), rgba(0,0,0,0));
+        .music-panel,
+        .tags-panel,
+        .links-panel {
+            background: rgba(12, 12, 12, 0.35);
             border: 1px solid rgba(255,255,255,.015);
-            border-radius: 14px;
-            padding: .6rem .7rem .7rem;
+            border-radius: 18px;
+            backdrop-filter: blur(9px);
+            padding: .75rem .9rem .85rem;
         }
-        .music-inner {
+        .music-line {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: .8rem;
         }
-        .music-text {
-            line-height: 1.1;
-        }
-        .music-text small {
+        .music-info small {
             font-size: .6rem;
-            color: rgba(255,255,255,.5);
+            color: rgba(255,255,255,.4);
         }
-        .music-text div {
+        .music-info div {
             font-size: .78rem;
         }
         .music-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.02);
-            width: 35px;
-            height: 35px;
+            width: 36px;
+            height: 36px;
             border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.04);
+            background: rgba(255,255,255,.02);
             display: grid;
             place-items: center;
             cursor: pointer;
         }
-        .pill {
+        .tag-pill {
             display: inline-flex;
             gap: .4rem;
             align-items: center;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.01);
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.01);
             border-radius: 999px;
-            padding: .3rem .55rem;
-            font-size: .68rem;
-            margin-right: .4rem;
+            padding: .25rem .6rem;
+            font-size: .66rem;
+            margin: .25rem .25rem 0 0;
+        }
+        .link-btn {
+            width: 100%;
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.01);
+            border-radius: 14px;
+            padding: .4rem .55rem;
+            display: flex;
+            gap: .45rem;
+            align-items: center;
+            font-size: .75rem;
             margin-bottom: .4rem;
+            cursor: pointer;
         }
-        .footer {
-            font-size: .6rem;
-            color: rgba(255,255,255,.3);
-            text-align: center;
-            margin-top: 1.35rem;
-        }
-        @media (max-width: 880px) {
-            .side-panel { order: -1; }
-            .avatar-row { flex-wrap: wrap; }
-            .btn-row { flex-direction: column; }
-            .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        @media (max-width: 900px) {
+            .profile { padding: 1.3rem 1.1rem; }
+            .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
         }
     </style>
 </head>
 <body>
-    <div class="bg-blob b1"></div>
-    <div class="bg-blob b2"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
 
-    <div class="wrapper">
-        <!-- MAIN PROFILE -->
-        <section class="profile-card">
-            <div class="avatar-row">
-                <div class="avatar-wrap">
-                    <div class="avatar" aria-label="avatar gif"></div>
+    <div class="layout">
+        <!-- LEFT: profile -->
+        <div class="card profile">
+            <div class="top-row">
+                <div class="avatar-ring">
+                    <!-- ważne: tutaj wczytujemy avatar.gif -->
+                    <img src="avatar.gif" alt="avatar" class="avatar" onerror="this.style.background='#0d0d0d'; this.src='';" />
                 </div>
-                <div class="name-block">
-                    <h1>
-                        B3sttieee
-                        <span style="font-size:.8rem;">🔥</span>
-                    </h1>
-                    <div class="badge-online">
-                        <span style="background:#3fff9f;width:6px;height:6px;border-radius:99px;display:inline-block;"></span>
+                <div class="name-box">
+                    <h1>B3sttieee <span style="font-size:.8rem;">🔥</span></h1>
+                    <div class="online-pill">
+                        <span style="width:7px;height:7px;border-radius:999px;background:#3aff8e;display:inline-block;"></span>
                         online
                     </div>
                     <p class="sub">Solo Leveling enjoyer • Roblox • Discord</p>
@@ -281,96 +284,88 @@
             </p>
 
             <div class="btn-row">
-                <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank" rel="noopener">
-                    <i class="fa-brands fa-roblox"></i>
-                    Roblox profile
+                <a class="btn btn-primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
+                    <i class="fa-brands fa-roblox"></i> Roblox profile
                 </a>
-                <button class="btn btn-secondary" id="copyDiscord">
-                    <i class="fa-brands fa-discord"></i>
-                    Copy Discord
+                <button class="btn btn-dark" id="copyDiscord">
+                    <i class="fa-brands fa-discord"></i> Copy Discord
                 </button>
-                <button class="btn btn-secondary" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">
-                    <i class="fa-solid fa-headphones"></i>
-                    Muzyka
+                <button class="btn btn-dark" id="scrollMusic">
+                    <i class="fa-solid fa-music"></i> Muzyka
                 </button>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat">
+            <div class="stats">
+                <div class="stat-box">
                     <div class="stat-label">discord</div>
                     <div class="stat-value">b3sttiee</div>
                 </div>
-                <div class="stat">
+                <div class="stat-box">
                     <div class="stat-label">roblox link</div>
                     <div class="stat-value">1</div>
                 </div>
-                <div class="stat">
+                <div class="stat-box">
                     <div class="stat-label">vibe</div>
                     <div class="stat-value">solo ⚔</div>
                 </div>
             </div>
 
             <p class="footer">made on GitHub Pages 💜</p>
-        </section>
+        </div>
 
-        <!-- SIDE PANEL -->
-        <aside class="side-panel">
-            <div class="music-box">
+        <!-- RIGHT: side info -->
+        <div class="side">
+            <div class="music-panel" id="musicPanel">
                 <div class="panel-title">player</div>
-                <div class="music-inner">
-                    <div class="music-text">
+                <div class="music-line">
+                    <div class="music-info">
                         <small>now playing</small>
                         <div>Solo vibe track</div>
                     </div>
-                    <button class="music-btn" id="toggleMusic" aria-label="Play / Pause">
+                    <button class="music-btn" id="toggleMusic">
                         <i class="fa-solid fa-play"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="links-box">
+            <div class="tags-panel">
                 <div class="panel-title">tags</div>
                 <div>
-                    <span class="pill"><i class="fa-solid fa-dragon"></i> solo leveling</span>
-                    <span class="pill"><i class="fa-brands fa-roblox"></i> roblox</span>
-                    <span class="pill"><i class="fa-solid fa-code"></i> pages</span>
-                    <span class="pill"><i class="fa-brands fa-discord"></i> discord</span>
+                    <span class="tag-pill"><i class="fa-solid fa-dragon"></i> solo leveling</span>
+                    <span class="tag-pill"><i class="fa-brands fa-roblox"></i> roblox</span>
+                    <span class="tag-pill"><i class="fa-solid fa-code"></i> github pages</span>
+                    <span class="tag-pill"><i class="fa-brands fa-discord"></i> discord</span>
                 </div>
             </div>
 
-            <div class="links-box">
+            <div class="links-panel">
                 <div class="panel-title">other links</div>
-                <div>
-                    <a class="btn btn-secondary" style="width:100%;justify-content:flex-start;" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
-                        <i class="fa-brands fa-roblox"></i> Roblox
-                    </a>
-                    <button class="btn btn-secondary" style="width:100%;justify-content:flex-start;" id="copyDiscord2">
-                        <i class="fa-brands fa-discord"></i> Copy Discord
-                    </button>
-                </div>
+                <a class="link-btn" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
+                    <i class="fa-brands fa-roblox"></i> Roblox
+                </a>
+                <button class="link-btn" id="copyDiscord2">
+                    <i class="fa-brands fa-discord"></i> Copy Discord
+                </button>
             </div>
-        </aside>
+        </div>
     </div>
 
     <!-- audio -->
     <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <script>
-        // copy discord (both buttons)
+        // copy discord
         const copyText = "b3sttiee";
-        function setCopied(btn) {
-            const old = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            setTimeout(() => btn.innerHTML = old, 1700);
-        }
-        const copy1 = document.getElementById("copyDiscord");
-        const copy2 = document.getElementById("copyDiscord2");
-        [copy1, copy2].forEach(btn => {
+        const copyBtns = [document.getElementById("copyDiscord"), document.getElementById("copyDiscord2")];
+        copyBtns.forEach(btn => {
+            if (!btn) return;
             btn.addEventListener("click", async () => {
                 try {
                     await navigator.clipboard.writeText(copyText);
-                    setCopied(btn);
-                } catch (err) {
+                    const old = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                    setTimeout(() => btn.innerHTML = old, 1600);
+                } catch (e) {
                     alert("Nie udało się skopiować :(");
                 }
             });
@@ -378,21 +373,24 @@
 
         // music
         const audio = document.getElementById("bgMusic");
-        const toggleBtn = document.getElementById("toggleMusic");
+        const toggle = document.getElementById("toggleMusic");
         let playing = false;
-        toggleBtn.addEventListener("click", () => {
+        toggle.addEventListener("click", () => {
             if (!playing) {
                 audio.play().then(() => {
                     playing = true;
-                    toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                }).catch(() => {
-                    alert("Kliknij jeszcze raz, przeglądarka blokuje autoplay.");
-                });
+                    toggle.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                }).catch(() => alert("Kliknij jeszcze raz – przeglądarka blokuje autoplay."));
             } else {
                 audio.pause();
                 playing = false;
-                toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                toggle.innerHTML = '<i class="fa-solid fa-play"></i>';
             }
+        });
+
+        // scroll to music
+        document.getElementById("scrollMusic").addEventListener("click", () => {
+            document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
         });
     </script>
 </body>
