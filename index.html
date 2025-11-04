@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B3sttieee | Bio</title>
 
-  <!-- EMBED / DISCORD -->
+  <!-- EMBED (Discord) -->
   <meta property="og:title" content="B3sttie & Bio" />
   <meta property="og:description" content="Linki, Discord, Roblox, Valorant, muzyka." />
   <meta property="og:image" content="https://b3sttieee.github.io/Test/Embed.png" />
   <meta property="og:url" content="https://b3sttieee.github.io/Test/" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- prosta faviconka z twojego gifa -->
+  <link rel="icon" href="avatar.gif" />
+
+  <!-- ikony -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
     :root {
@@ -63,9 +67,7 @@
       transform: translateY(25px);
       animation: enter .6s ease-out .15s forwards;
     }
-    @keyframes enter {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes enter { to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; max-width: 540px; }
@@ -133,11 +135,14 @@
       padding: .15rem .55rem .22rem;
       font-size: .56rem;
       position: relative;
+      padding-left: 17px;
     }
     .online-pill::before {
       content: "";
       position: absolute;
-      left: 4px;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
       width: 7px;
       height: 7px;
       border-radius: 999px;
@@ -145,8 +150,8 @@
       animation: pulse 1.15s ease-out infinite;
     }
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(2.1); opacity: 0; }
+      0% { transform: translateY(-50%) scale(1); opacity: 1; }
+      100% { transform: translateY(-50%) scale(2.1); opacity: 0; }
     }
 
     .sub { font-size: .7rem; margin-top: .35rem; color: var(--muted); }
@@ -298,21 +303,17 @@
     .music-btn:hover { transform: scale(1.05); }
 
     .volume-wrap { display: flex; align-items: center; gap: .5rem; margin-top: .6rem; }
-    .volume-wrap input[type="range"] {
-      width: 100%;
-      accent-color: #ff4769;
-      height: 3px;
-    }
+    .volume-wrap input[type="range"] { width: 100%; accent-color: #ff4769; height: 3px; }
 
-    /* fake progress anim info */
-    .panel-box .small-hint {
+    .small-hint {
       font-size: .58rem;
       color: rgba(255,255,255,.28);
       display: flex;
       gap: .4rem;
       align-items: center;
+      margin-top: .4rem;
     }
-    .panel-box .small-dot {
+    .small-dot {
       width: 6px; height: 6px; border-radius: 999px; background: #ff4769;
       animation: blink 1.4s ease-in-out infinite;
     }
@@ -366,7 +367,7 @@
   <div class="blob b2"></div>
 
   <div class="layout">
-    <!-- LEWA STRONA -->
+    <!-- LEWA -->
     <div class="card profile tilt">
       <div class="top-row">
         <div class="avatar-ring">
@@ -442,7 +443,7 @@
       <p class="footer">made on GitHub Pages 💜</p>
     </div>
 
-    <!-- PRAWA STRONA -->
+    <!-- PRAWA -->
     <div class="side">
       <div class="panel-box tilt" id="musicPanel">
         <div class="panel-title">player</div>
@@ -458,7 +459,7 @@
           <input type="range" id="volumeSlider" min="0" max="100" value="30">
         </div>
         <div class="small-hint">
-          <span class="small-dot"></span> jeśli cisza – kliknij ▶ (przeglądarka blokuje autoplay)
+          <span class="small-dot"></span> jeśli cisza – kliknij ▶ (ładuje się dopiero przy kliknięciu)
         </div>
       </div>
 
@@ -483,13 +484,11 @@
 
   <!-- ukryty youtube player -->
   <div id="ytplayer"></div>
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     // kopiowanie discord
-    const copyText = "b3sttiee";
     document.getElementById("copyDiscord").addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(copyText);
+        await navigator.clipboard.writeText("b3sttiee");
         const btn = document.getElementById("copyDiscord");
         const old = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
@@ -504,51 +503,71 @@
       document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
     });
 
-    // YT player
-    let ytPlayer;
+    // LAZY LOAD YOUTUBE
+    let ytPlayer = null;
     let isPlaying = false;
-    const VOLUME_DEFAULT = 30;
+    const volumeSlider = document.getElementById("volumeSlider");
+    const toggleBtn = document.getElementById("toggleMusic");
+    const YT_ID = "MvVWqhVlUzk"; // Pezet - Nitro
 
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('ytplayer', {
-        height: '0',
-        width: '0',
-        videoId: 'MvVWqhVlUzk',
+    // ładowanie API dopiero jak trzeba
+    function loadYouTubeApi() {
+      return new Promise((resolve) => {
+        if (window.YT && window.YT.Player) {
+          resolve();
+          return;
+        }
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        window.onYouTubeIframeAPIReady = () => resolve();
+        document.body.appendChild(tag);
+      });
+    }
+
+    async function createPlayerIfNeeded() {
+      if (ytPlayer) return;
+      await loadYouTubeApi();
+      ytPlayer = new YT.Player("ytplayer", {
+        height: "0",
+        width: "0",
+        videoId: YT_ID,
         playerVars: {
           autoplay: 0,
           controls: 0,
           loop: 1,
-          playlist: 'MvVWqhVlUzk',
+          playlist: YT_ID,
           playsinline: 1
         },
-        events: { 'onReady': onPlayerReady }
-      });
-    }
-    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-
-    function onPlayerReady() {
-      const toggleBtn = document.getElementById("toggleMusic");
-      const vol = document.getElementById("volumeSlider");
-      ytPlayer.setVolume(VOLUME_DEFAULT);
-
-      toggleBtn.addEventListener("click", () => {
-        if (!isPlaying) {
-          ytPlayer.unMute();
-          ytPlayer.setVolume(vol.value);
-          ytPlayer.playVideo();
-          isPlaying = true;
-          toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        } else {
-          ytPlayer.pauseVideo();
-          isPlaying = false;
-          toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        events: {
+          onReady: () => {
+            ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
+          }
         }
       });
-
-      vol.addEventListener("input", () => {
-        ytPlayer.setVolume(parseInt(vol.value, 10));
-      });
     }
+
+    toggleBtn.addEventListener("click", async () => {
+      await createPlayerIfNeeded();
+      if (!ytPlayer) return;
+
+      if (!isPlaying) {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
+        ytPlayer.playVideo();
+        isPlaying = true;
+        toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      } else {
+        ytPlayer.pauseVideo();
+        isPlaying = false;
+        toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
+    });
+
+    volumeSlider.addEventListener("input", () => {
+      if (ytPlayer) {
+        ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
+      }
+    });
   </script>
 </body>
 </html>
