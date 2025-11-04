@@ -2,360 +2,192 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>B3sttieee | Bio</title>
 
-  <!-- embed -->
+  <!-- Podgląd (Discord/Twitter) -->
   <meta property="og:title" content="B3sttie & Bio" />
   <meta property="og:description" content="Linki, Discord, Roblox, Valorant, muzyka." />
   <meta property="og:image" content="https://b3sttieee.github.io/Test/Embed.png" />
   <meta property="og:url" content="https://b3sttieee.github.io/Test/" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- mała favicon -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%238b5cf6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='30' fill='white'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E" />
+  <!-- Lekka favicon (inline, żeby karta się nie “kręciła”) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop stop-color='%23ff4769'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23g)'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' fill='white'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E" />
 
   <style>
-    :root {
-      --bg: radial-gradient(circle at top, #090911 0%, #040208 45%, #000 90%);
-      --accent: #ff4769;
-      --accent2: #ff8b4f;
-      --accent3: #6826ff;
+    :root{
+      --bg: radial-gradient(circle at 20% -20%, #0a0a12 0%, #04040a 45%, #000 100%);
+      --panel: rgba(7,7,12,.56);
+      --panel-2: rgba(7,7,12,.68);
+      --stroke: rgba(255,255,255,.04);
       --text: #fff;
-      --muted: rgba(255,255,255,.58);
-      --panel: rgba(5,5,7,.55);
-      --radius: 22px;
+      --muted: rgba(255,255,255,.65);
+      --a1: #ff4769;
+      --a2: #ff8b4f;
+      --a3: #7b5bff;
+      --r: 22px;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.3rem;
-      position: relative;
-      overflow-x: hidden;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+      background:var(--bg);
+      overflow-x:hidden;
+      padding:1.2rem;
+      display:grid;
+      place-items:center;
     }
-    /* delikatna siatka */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+
+    /* tło – siatka + bloby */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
       background-image:
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 0),
-        linear-gradient(0deg, rgba(255,255,255,.018) 1px, transparent 0);
-      background-size: 52px 52px;
-      pointer-events: none;
-      z-index: -4;
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:56px 56px;
+      pointer-events:none; z-index:-3;
     }
-    .blob {
-      position: fixed;
-      width: 32rem;
-      height: 32rem;
-      filter: blur(85px);
-      opacity: .45;
-      animation: blobFloat 15s ease-in-out infinite alternate;
-      z-index: -3;
-    }
-    .blob.b1 { right: -6rem; top: -6rem; background: radial-gradient(circle, rgba(255,71,105,.6), rgba(255,71,105,0)); }
-    .blob.b2 { left: -5rem; bottom: -7rem; background: radial-gradient(circle, rgba(0,169,255,.5), rgba(0,169,255,0)); animation-delay: 4s; }
-    @keyframes blobFloat { to { transform: translateY(2.6rem); opacity: .18; } }
+    .blob{position:fixed;width:34rem;height:34rem;filter:blur(85px);opacity:.45;z-index:-4;animation:blob 16s ease-in-out infinite alternate}
+    .b1{left:-8rem;top:-8rem;background:radial-gradient(circle, rgba(255,71,105,.6), transparent)}
+    .b2{right:-8rem;bottom:-10rem;background:radial-gradient(circle, rgba(123,91,255,.55), transparent);animation-delay:4s}
+    @keyframes blob{to{transform:translateY(2.6rem);opacity:.18}}
 
-    .layout {
-      width: min(1220px, 100%);
-      display: grid;
-      grid-template-columns: 1.05fr .55fr;
-      gap: 1.3rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: enter .5s ease-out .1s forwards;
-    }
-    @keyframes enter { to { opacity: 1; transform: translateY(0); } }
+    /* layout */
+    .wrap{width:min(1240px,100%);display:grid;grid-template-columns:1.1fr .62fr;gap:1.2rem;opacity:0;transform:translateY(16px);animation:in .45s ease .1s forwards}
+    @keyframes in{to{opacity:1;transform:translateY(0)}}
+    @media (max-width:860px){.wrap{grid-template-columns:1fr;max-width:560px}}
 
-    @media (max-width: 760px) {
-      body { padding: .65rem; }
-      .layout { grid-template-columns: 1fr; max-width: 540px; }
-      .profile-main { padding: 1.15rem .7rem 1rem; }
-      .quick-row,
-      .grid-3,
-      .id-row { grid-template-columns: 1fr; }
-      .side .panel { padding: .6rem .7rem .7rem; }
+    /* cards */
+    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:var(--r);backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .tilt{transform-style:preserve-3d;transition:transform .2s ease, box-shadow .2s ease}
+    .tilt:hover{box-shadow:0 22px 50px rgba(0,0,0,.35)}
+    .glo{position:relative;overflow:hidden}
+    .glo::before{
+      content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:
+        linear-gradient(120deg,rgba(255,71,105,.65),transparent 40%),
+        linear-gradient(300deg,rgba(123,91,255,.65),transparent 40%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;filter:blur(6px);opacity:.55;animation:gl 12s linear infinite
     }
+    @keyframes gl{from{transform:rotate(0)}to{transform:rotate(1turn)}}
 
-    .tilt { transition: transform .25s ease, box-shadow .25s ease; }
-    .tilt:hover { transform: translateY(-3px); box-shadow: 0 22px 45px rgba(0,0,0,.35); }
+    /* lewa – hero */
+    .hero{overflow:hidden}
+    .hero .head{
+      height:108px;
+      background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));
+      background-size:160% 160%;animation:wave 12s ease-in-out infinite;
+      border-radius:calc(var(--r) - 1px) calc(var(--r) - 1px) 0 0;
+    }
+    @keyframes wave{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .hero .body{padding:1.3rem 1.35rem 1.1rem}
 
-    /* LEWA STRONA */
-    .profile {
-      background: rgba(4,4,4,.45);
-      border: 1px solid rgba(255,255,255,.015);
-      border-radius: 26px;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      position: relative;
+    .row{display:flex;gap:1rem;align-items:center}
+    .avatar{
+      width:120px;height:120px;margin-top:-60px;position:relative;flex:0 0 120px
     }
-    .profile-header {
-      background: linear-gradient(110deg, rgba(255,71,105,1) 0%, rgba(255,139,79,1) 50%, rgba(104,38,255,1) 100%);
-      background-size: 160% 160%;
-      animation: headWave 12s ease-in-out infinite;
-      height: 96px;
-      display: flex;
-      align-items: flex-end;
-      padding: 0 1.5rem 0.35rem;
-      gap: 1rem;
+    .ring{
+      position:absolute;inset:0;border-radius:999px;padding:3px;background:radial-gradient(circle,rgba(255,255,255,.78),transparent 70%);display:grid;place-items:center;animation:float 5.6s ease-in-out infinite
     }
-    @keyframes headWave {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .profile-main { padding: 1.2rem 1.5rem 1.1rem; }
-
-    .avatar-shell {
-      position: relative;
-      width: 115px;
-      height: 115px;
-      margin-top: -55px;
-    }
-    .avatar-ring {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,255,.7), rgba(255,255,255,0));
-      padding: 3px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      animation: avFloat 5.5s ease-in-out infinite;
-    }
-    @keyframes avFloat { 0%,100%{transform:translateY(2px)}50%{transform:translateY(-5px)} }
-    .avatar-ring::after {
-      content: "";
-      position: absolute;
-      inset: -12%;
-      border-radius: inherit;
-      border: 1px solid rgba(255,255,255,.3);
-      animation: ringPulse 3.1s ease-out infinite;
-    }
-    @keyframes ringPulse {
-      0% { transform: scale(1); opacity: .5; }
-      100% { transform: scale(1.26); opacity: 0; }
-    }
-    .avatar-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,.55);
-      object-fit: cover;
-      object-position: center;
-      background: radial-gradient(circle, #1b1b1b 0%, #000 60%);
-      box-shadow: inset 0 0 20px rgba(0,0,0,.45);
+    @keyframes float{0%,100%{transform:translateY(2px)}50%{transform:translateY(-6px)}}
+    .ring::after{content:"";position:absolute;inset:-12%;border:1px solid rgba(255,255,255,.35);border-radius:inherit;animation:pulse 3s ease-out infinite}
+    @keyframes pulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.26);opacity:0}}
+    .avatar img{
+      width:100%;height:100%;border-radius:999px;border:2px solid rgba(255,255,255,.55);
+      object-fit:cover;object-position:center;background:radial-gradient(circle,#1b1b1b, #000 60%);box-shadow:inset 0 0 20px rgba(0,0,0,.45)
     }
 
-    .name-line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .name-block h1 {
-      font-size: 2rem;
-      margin: 0;
-      line-height: 1;
-      display: flex;
-      gap: .45rem;
-      align-items: center;
-    }
-    .online-pill {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(58, 255, 142, .08);
-      border: 1px solid rgba(58,255,142,.25);
-      color: #e5fff1;
-      border-radius: 999px;
-      padding: .15rem .6rem .2rem 1.05rem;
-      font-size: .6rem;
-      position: relative;
-      margin-top: .4rem;
-    }
-    .online-pill::before {
-      content: "";
-      position: absolute;
-      left: .35rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 7px; height: 7px; border-radius: 999px; background: #3aff8e;
-      animation: dotPulse 1.1s ease-out infinite;
-    }
-    @keyframes dotPulse {
-      0%{transform:translateY(-50%) scale(1);opacity:1}
-      100%{transform:translateY(-50%) scale(2);opacity:0}
-    }
-    .sub-line { font-size: .7rem; color: rgba(255,255,255,.75); }
+    .name h1{margin:0;font-size:2.05rem;line-height:1;letter-spacing:.2px}
+    .tag{display:inline-flex;gap:.5rem;align-items:center;margin-top:.35rem}
+    .badge{position:relative;display:inline-flex;align-items:center;border:1px solid rgba(58,255,142,.28);background:rgba(58,255,142,.09);color:#d2ffe8;border-radius:999px;padding:.18rem .7rem .22rem 1.25rem;font-size:.6rem}
+    .badge::before{content:"";position:absolute;left:.45rem;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:999px;background:#3aff8e;box-shadow:0 0 8px rgba(58,255,142,.8);animation:ping 1.1s ease-out infinite}
+    @keyframes ping{to{transform:translateY(-50%) scale(2.1);opacity:0}}
 
-    .about {
-      margin-top: 1.1rem;
-      font-size: .8rem;
-      line-height: 1.45;
-    }
+    .about{margin-top:1rem;font-size:.88rem;line-height:1.55;color:var(--muted)}
 
-    .quick-row {
-      margin-top: 1.05rem;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(80px, 1fr));
-      gap: .65rem;
+    .cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{
+      --bg: rgba(255,255,255,.06);
+      background:var(--bg);
+      border:1px solid rgba(255,255,255,.06);
+      color:#fff;border-radius:14px;padding:.62rem .9rem;font-size:.82rem;display:inline-flex;gap:.5rem;align-items:center;cursor:pointer;position:relative;overflow:hidden
     }
-    .quick-btn {
-      background: rgba(0,0,0,.3);
-      border: 1px solid rgba(255,255,255,.02);
-      border-radius: 14px;
-      padding: .55rem .6rem;
-      display: flex;
-      align-items: center;
-      gap: .45rem;
-      font-size: .77rem;
-      cursor: pointer;
-      transition: transform .12s ease, background .12s ease;
-    }
-    .quick-btn.primary {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-      box-shadow: 0 12px 25px rgba(255,71,105,.2);
-    }
-    .quick-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.04); }
+    .btn.primary{background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:0 14px 30px rgba(255,71,105,.22);border:none}
+    .btn:hover{filter:brightness(1.04);transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    /* ripple */
+    .btn .rip{position:absolute;border-radius:999px;transform:translate(-50%,-50%);pointer-events:none;background:rgba(255,255,255,.35);animation:rip .6s ease-out forwards}
+    @keyframes rip{from{width:0;height:0;opacity:.45}to{width:420px;height:420px;opacity:0}}
 
-    .grid-3 {
-      margin-top: 1.1rem;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(100px, 1fr));
-      gap: .7rem;
-    }
-    .info-card {
-      background: radial-gradient(circle at top, rgba(255,255,255,.02), rgba(0,0,0,0) 70%), rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.01);
-      border-radius: 14px;
-      padding: .45rem .6rem .6rem;
-    }
-    .info-label { font-size: .6rem; text-transform: uppercase; color: rgba(255,255,255,.5); }
-    .info-value { font-size: .85rem; margin-top: .2rem; }
+    /* trzy infokarty */
+    .grid-3{display:grid;grid-template-columns:repeat(3, minmax(120px,1fr));gap:.8rem;margin-top:1rem}
+    .info{background:rgba(255,255,255,.03);border:1px solid var(--stroke);border-radius:14px;padding:.6rem .7rem}
+    .info small{display:block;font-size:.62rem;color:rgba(255,255,255,.55);text-transform:uppercase}
+    .info strong{display:block;margin-top:.25rem;font-size:.95rem}
 
-    .id-row {
-      margin-top: .85rem;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(130px, 1fr));
-      gap: .7rem;
-    }
-    .id-card {
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,255,255,.01);
-      border-radius: 14px;
-      padding: .55rem .6rem .6rem;
-      display: flex;
-      gap: .55rem;
-      align-items: center;
-    }
-    .id-icon {
-      width: 32px; height: 32px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.055);
-      display: grid;
-      place-items: center;
-      font-size: .7rem;
-      flex: 0 0 32px;
-    }
-    .id-title { font-size: .57rem; text-transform: uppercase; color: rgba(255,255,255,.45); }
-    .id-value { font-size: .7rem; }
+    /* id karty */
+    .id-row{display:grid;grid-template-columns:repeat(3, minmax(130px,1fr));gap:.75rem;margin-top:.85rem}
+    .id{background:rgba(255,255,255,.03);border:1px solid var(--stroke);border-radius:14px;padding:.6rem .7rem;display:flex;gap:.55rem;align-items:center}
+    .ico{width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.07);display:grid;place-items:center;flex:0 0 34px}
+    .id small{display:block;font-size:.6rem;color:rgba(255,255,255,.5);text-transform:uppercase}
+    .id span{font-size:.8rem}
 
-    .footer { margin-top: 1.05rem; font-size: .6rem; color: rgba(255,255,255,.3); text-align: center; }
+    .foot{margin-top:1rem;text-align:center;font-size:.62rem;color:rgba(255,255,255,.35)}
 
-    /* PRAWA */
-    .side { display: flex; flex-direction: column; gap: 1rem; }
-    .panel {
-      background: rgba(5,5,7,.68);
-      border: 1px solid rgba(255,255,255,.018);
-      border-radius: 18px;
-      backdrop-filter: blur(10px);
-      padding: .75rem .85rem .85rem;
+    /* prawa kolumna */
+    .side{display:flex;flex-direction:column;gap:1rem}
+    .panel{background:var(--panel-2);border:1px solid var(--stroke);border-radius:18px;backdrop-filter:blur(10px);padding:.85rem .95rem}
+
+    .p-title{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:.6rem}
+
+    .p-head{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+    .p-info small{font-size:.58rem;color:rgba(255,255,255,.4)}
+    .p-info div{font-size:.76rem;display:flex;gap:.45rem;align-items:center}
+    .p-btn{width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);display:grid;place-items:center;cursor:pointer}
+    .vol{display:flex;align-items:center;gap:.5rem;margin-top:.55rem}
+    .vol input[type=range]{width:100%;accent-color:var(--a1)}
+    .hint{display:flex;gap:.45rem;align-items:center;margin-top:.4rem;font-size:.6rem;color:rgba(255,255,255,.3)}
+    .dot{width:6px;height:6px;border-radius:999px;background:var(--a1)}
+
+    .tags .chip{display:inline-flex;gap:.4rem;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--stroke);border-radius:999px;padding:.32rem .65rem;font-size:.66rem;margin:.25rem .25rem 0 0}
+    .link{width:100%;display:flex;gap:.5rem;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--stroke);border-radius:14px;padding:.5rem .65rem;font-size:.8rem;color:#fff;text-decoration:none}
+    .link:hover{background:rgba(255,255,255,.07);transform:translateY(-1px)}
+
+    /* tilt parallax (ograniczony ruch) */
+    @media (pointer:fine){
+      .tilt[data-tilt]:hover{will-change:transform}
     }
-    .panel-title { font-size: .58rem; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.6); margin-bottom: .55rem; }
-
-    /* player */
-    .player-head { display: flex; justify-content: space-between; gap: .6rem; align-items: center; }
-    .player-info small { font-size: .56rem; color: rgba(255,255,255,.35); }
-    .player-info div { font-size: .72rem; display: flex; gap: .4rem; align-items: center; }
-    .player-btn {
-      width: 38px; height: 38px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.04);
-      background: rgba(255,255,255,.02);
-      display: grid; place-items: center;
-      cursor: pointer;
-      transition: background .1s;
-    }
-    .player-btn:hover { background: rgba(255,255,255,.15); }
-    .volume-line { display: flex; align-items: center; gap: .5rem; margin-top: .55rem; }
-    .volume-line input[type=range] { width: 100%; accent-color: #ff4769; }
-    .player-hint { margin-top: .4rem; display: flex; gap: .4rem; align-items: center; font-size: .58rem; color: rgba(255,255,255,.28); }
-    .dot { width: 6px; height: 6px; border-radius: 999px; background: #ff4769; }
-
-    .tag-pill {
-      display: inline-flex;
-      gap: .34rem;
-      align-items: center;
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.01);
-      border-radius: 999px;
-      padding: .3rem .6rem;
-      font-size: .65rem;
-      margin: .25rem .25rem 0 0;
-    }
-
-    .link-btn {
-      width: 100%;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.01);
-      border-radius: 14px;
-      padding: .45rem .55rem;
-      display: flex;
-      gap: .45rem;
-      align-items: center;
-      font-size: .75rem;
-      cursor: pointer;
-      transition: background .12s ease, transform .12s ease;
-    }
-    .link-btn:hover { background: rgba(255,255,255,.075); transform: translateY(-1px); }
-
-    #ytplayer { position: absolute; width: 0; height: 0; opacity: 0; }
   </style>
 </head>
 <body>
   <div class="blob b1"></div>
   <div class="blob b2"></div>
 
-  <div class="layout">
+  <main class="wrap">
     <!-- LEWA -->
-    <div class="profile tilt">
-      <div class="profile-header">
-        <!-- tylko pasek, resztę niżej -->
-      </div>
-      <div class="profile-main">
-        <div style="display:flex; gap:1rem; align-items:center;">
-          <div class="avatar-shell">
-            <div class="avatar-ring">
+    <section class="card hero glo tilt" data-tilt>
+      <div class="head"></div>
+      <div class="body">
+        <div class="row">
+          <div class="avatar">
+            <div class="ring">
               <img src="https://b3sttieee.github.io/Test/avatar.gif"
-                   class="avatar-img"
                    alt="avatar"
-                   onerror="this.src='https://via.placeholder.com/120/1b1b1b/ffffff?text=%20';" />
+                   onerror="this.src='https://via.placeholder.com/120/1b1b1b/ffffff?text=%20'">
             </div>
           </div>
-          <div class="name-block">
-            <div class="name-line">
-              <h1>B3sttieee 🔥</h1>
+          <div class="name">
+            <h1>B3sttieee 🔥</h1>
+            <div class="tag">
+              <span class="badge">online</span>
             </div>
-            <div class="online-pill">online</div>
-            <p class="sub-line">Patryk • 20 lat</p>
+            <div class="sub" style="margin-top:.35rem;color:rgba(255,255,255,.78);font-size:.8rem">
+              Patryk • 20 lat
+            </div>
           </div>
         </div>
 
@@ -364,188 +196,154 @@
           a muzyka musi lecieć cały czas 🎧 Niżej masz moje linki i ID, żebyś mógł dodać mnie w gierkach.
         </p>
 
-        <div class="quick-row">
-          <a class="quick-btn primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank">
-            🧱 Roblox profile
-          </a>
-          <button class="quick-btn" id="copyDiscord">💬 Copy Discord</button>
-          <button class="quick-btn" id="scrollMusic">🎵 Player</button>
+        <div class="cta">
+          <a class="btn primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank">🧱 Roblox profile</a>
+          <button class="btn" id="copyDiscord">💬 Copy Discord</button>
+          <button class="btn" id="gotoPlayer">🎵 Player</button>
         </div>
 
         <div class="grid-3">
-          <div class="info-card">
-            <div class="info-label">discord</div>
-            <div class="info-value">b3sttiee</div>
-          </div>
-          <div class="info-card">
-            <div class="info-label">roblox</div>
-            <div class="info-value">1 link</div>
-          </div>
-          <div class="info-card">
-            <div class="info-label">skrypty</div>
-            <div class="info-value">for fun 💻</div>
-          </div>
+          <div class="info"><small>discord</small><strong>b3sttiee</strong></div>
+          <div class="info"><small>roblox</small><strong>1 link</strong></div>
+          <div class="info"><small>skrypty</small><strong>for fun 💻</strong></div>
         </div>
 
         <div class="id-row">
-          <div class="id-card">
-            <div class="id-icon" style="background:linear-gradient(180deg,#ff4d6d,#ff2345);">🟥</div>
-            <div>
-              <div class="id-title">riot / valorant</div>
-              <div class="id-value">B3sttieee#VALO</div>
-            </div>
+          <div class="id">
+            <div class="ico" style="background:linear-gradient(180deg,#ff4d6d,#ff2345);">🟥</div>
+            <div><small>riot / valorant</small><span>B3sttieee#VALO</span></div>
           </div>
-          <div class="id-card">
-            <div class="id-icon">🧱</div>
-            <div>
-              <div class="id-title">roblox nick</div>
-              <div class="id-value">b3sttieee</div>
-            </div>
+          <div class="id">
+            <div class="ico">🧱</div>
+            <div><small>roblox nick</small><span>b3sttieee</span></div>
           </div>
-          <div class="id-card">
-            <div class="id-icon">🎮</div>
-            <div>
-              <div class="id-title">epic games</div>
-              <div class="id-value">B3sttieee</div>
-            </div>
+          <div class="id">
+            <div class="ico">🎮</div>
+            <div><small>epic games</small><span>B3sttieee</span></div>
           </div>
         </div>
 
-        <p class="footer">made on GitHub Pages 💜</p>
+        <div class="foot">made on GitHub Pages 💜</div>
       </div>
-    </div>
+    </section>
 
     <!-- PRAWA -->
-    <div class="side">
-      <div class="panel tilt" id="musicPanel">
-        <div class="panel-title">player</div>
-        <div class="player-head">
-          <div class="player-info">
+    <aside class="side">
+      <section class="panel tilt" data-tilt id="musicPanel">
+        <div class="p-title">player</div>
+        <div class="p-head">
+          <div class="p-info">
             <small>teraz leci</small>
             <div>▶ Pezet – Nitro</div>
           </div>
-          <button class="player-btn" id="toggleMusic" aria-label="play/pause">▶</button>
+          <button class="p-btn" id="togglePlay" aria-label="play/pause">▶</button>
         </div>
-        <div class="volume-line">
+        <div class="vol">
           <span>🔉</span>
-          <input type="range" id="volumeSlider" min="0" max="100" value="30">
+          <input type="range" id="volume" min="0" max="100" value="30">
         </div>
-        <div class="player-hint" id="playerStatus">
-          <span class="dot"></span> kliknij ▶ żeby załadować muzykę
+        <div class="hint" id="pHint"><span class="dot"></span> kliknij ▶ żeby załadować muzykę</div>
+      </section>
+
+      <section class="panel tilt" data-tilt>
+        <div class="p-title">tags</div>
+        <div class="tags">
+          <span class="chip">🧍 patryk</span>
+          <span class="chip">🧱 roblox</span>
+          <span class="chip">💻 skrypty</span>
+          <span class="chip">🎧 muzyka</span>
         </div>
-      </div>
+      </section>
 
-      <div class="panel tilt">
-        <div class="panel-title">tags</div>
-        <div>
-          <span class="tag-pill">🧍 patryk</span>
-          <span class="tag-pill">🧱 roblox</span>
-          <span class="tag-pill">💻 skrypty</span>
-          <span class="tag-pill">🎧 muzyka</span>
-        </div>
-      </div>
+      <section class="panel tilt" data-tilt>
+        <div class="p-title">other links</div>
+        <a class="link" href="https://www.roblox.com/users/1308591016/profile" target="_blank">🧱 Roblox</a>
+      </section>
+    </aside>
+  </main>
 
-      <div class="panel tilt">
-        <div class="panel-title">other links</div>
-        <a class="link-btn" href="https://www.roblox.com/users/1308591016/profile" target="_blank">🧱 Roblox</a>
-      </div>
-    </div>
-  </div>
+  <!-- ukryty player -->
+  <div id="ytplayer" aria-hidden="true"></div>
 
-  <div id="ytplayer"></div>
   <script>
-    // kopiuj discord
-    document.getElementById("copyDiscord").addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText("b3sttiee");
-        const btn = document.getElementById("copyDiscord");
-        const old = btn.textContent;
-        btn.textContent = "✅ skopiowano!";
-        setTimeout(() => btn.textContent = old, 1400);
-      } catch (e) {
-        alert("Nie udało się skopiować :(");
-      }
+    /* ripple na .btn */
+    document.querySelectorAll('.btn').forEach(b=>{
+      b.addEventListener('click', e=>{
+        const r=document.createElement('span'); r.className='rip';
+        const rect=b.getBoundingClientRect();
+        r.style.left=(e.clientX-rect.left)+'px';
+        r.style.top=(e.clientY-rect.top)+'px';
+        b.appendChild(r); setTimeout(()=>r.remove(),600);
+      });
     });
 
-    // scroll do playera
-    document.getElementById("scrollMusic").addEventListener("click", () => {
-      document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
+    /* kopiowanie discorda */
+    document.getElementById('copyDiscord').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText('b3sttiee');
+        const btn = document.getElementById('copyDiscord');
+        const old = btn.textContent; btn.textContent='✅ skopiowano!';
+        setTimeout(()=>btn.textContent=old,1200);
+      }catch{ alert('Nie udało się skopiować :('); }
     });
 
-    // lazy youtube
-    let ytPlayer = null;
-    let isPlaying = false;
-    const volumeSlider = document.getElementById("volumeSlider");
-    const toggleBtn = document.getElementById("toggleMusic");
-    const statusEl = document.getElementById("playerStatus");
-    const YT_ID = "MvVWqhVlUzk";
+    /* scroll do playera */
+    document.getElementById('gotoPlayer').addEventListener('click',()=>{
+      document.getElementById('musicPanel').scrollIntoView({behavior:'smooth',block:'center'});
+    });
 
-    function loadYT() {
-      return new Promise((resolve, reject) => {
-        if (window.YT && window.YT.Player) {
-          resolve();
-          return;
-        }
-        const s = document.createElement("script");
-        s.src = "https://www.youtube.com/iframe_api";
-        s.onerror = () => reject(new Error("YT blocked"));
+    /* prosty tilt parallax (bez biblioteki) */
+    const tiltEls=[...document.querySelectorAll('[data-tilt]')];
+    const tilt = (el,e)=>{
+      const r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+      const dx=(e.clientX-cx)/r.width, dy=(e.clientY-cy)/r.height;
+      el.style.transform=`rotateX(${(-dy*6).toFixed(2)}deg) rotateY(${(dx*8).toFixed(2)}deg)`;
+    };
+    const clear = el=> el.style.transform='rotateX(0) rotateY(0)';
+    tiltEls.forEach(el=>{
+      el.addEventListener('mousemove',e=>tilt(el,e));
+      el.addEventListener('mouseleave',()=>clear(el));
+    });
+
+    /* YouTube lazy */
+    let YTP=null, playing=false;
+    const vol = document.getElementById('volume');
+    const btn = document.getElementById('togglePlay');
+    const hint= document.getElementById('pHint');
+    const VID = 'MvVWqhVlUzk';
+
+    function loadYT(){
+      return new Promise((res,rej)=>{
+        if(window.YT && window.YT.Player){ res(); return; }
+        const s=document.createElement('script');
+        s.src='https://www.youtube.com/iframe_api';
+        s.onerror=()=>rej(new Error('YT blocked'));
         document.body.appendChild(s);
-        window.onYouTubeIframeAPIReady = () => resolve();
-        setTimeout(() => reject(new Error("YT timeout")), 4000);
+        window.onYouTubeIframeAPIReady=()=>res();
+        setTimeout(()=>rej(new Error('YT timeout')),4000);
       });
     }
-
-    async function ensurePlayer() {
-      if (ytPlayer) return;
+    async function ensurePlayer(){
+      if(YTP) return;
       await loadYT();
-      ytPlayer = new YT.Player("ytplayer", {
-        height: "0",
-        width: "0",
-        videoId: YT_ID,
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          loop: 1,
-          playlist: YT_ID,
-          playsinline: 1
-        },
-        events: {
-          onReady: () => ytPlayer.setVolume(parseInt(volumeSlider.value, 10))
-        }
+      YTP = new YT.Player('ytplayer',{
+        height:'0', width:'0', videoId:VID,
+        playerVars:{autoplay:0,controls:0,loop:1,playlist:VID,playsinline:1},
+        events:{ onReady:()=>YTP.setVolume(parseInt(vol.value,10)) }
       });
     }
+    btn.addEventListener('click', async ()=>{
+      try{ await ensurePlayer(); }
+      catch(e){ hint.textContent='YouTube jest zablokowany w tej przeglądarce 🙃'; return; }
 
-    toggleBtn.addEventListener("click", async () => {
-      try {
-        await ensurePlayer();
-      } catch (err) {
-        statusEl.textContent = "YouTube jest zablokowany w tej przeglądarce 🙃";
-        return;
-      }
-
-      if (!ytPlayer) {
-        statusEl.textContent = "ładuję player...";
-        return;
-      }
-
-      if (!isPlaying) {
-        ytPlayer.unMute();
-        ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
-        ytPlayer.playVideo();
-        isPlaying = true;
-        toggleBtn.textContent = "⏸";
-        statusEl.textContent = "gra 🎧";
-      } else {
-        ytPlayer.pauseVideo();
-        isPlaying = false;
-        toggleBtn.textContent = "▶";
-        statusEl.textContent = "zatrzymane";
+      if(!playing){
+        YTP.unMute(); YTP.setVolume(parseInt(vol.value,10)); YTP.playVideo();
+        playing=true; btn.textContent='⏸'; hint.textContent='gra 🎧';
+      }else{
+        YTP.pauseVideo(); playing=false; btn.textContent='▶'; hint.textContent='zatrzymane';
       }
     });
-
-    volumeSlider.addEventListener("input", () => {
-      if (ytPlayer) ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
-    });
+    vol.addEventListener('input',()=>{ if(YTP) YTP.setVolume(parseInt(vol.value,10)); });
   </script>
 </body>
 </html>
