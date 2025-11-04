@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B3sttieee | Bio</title>
 
-  <!-- PODGLĄD / EMBED -->
+  <!-- EMBED / DISCORD -->
   <meta property="og:title" content="B3sttie & Bio" />
   <meta property="og:description" content="Linki, Discord, Roblox, Valorant, muzyka." />
   <meta property="og:image" content="https://b3sttieee.github.io/Test/Embed.png" />
   <meta property="og:url" content="https://b3sttieee.github.io/Test/" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- ikony -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
@@ -39,25 +38,35 @@
       position: relative;
       overflow: hidden;
     }
+
+    /* tła */
     .blob {
       position: fixed;
       width: 30rem;
       height: 30rem;
-      filter: blur(70px);
+      filter: blur(75px);
       opacity: .35;
       animation: float 16s ease-in-out infinite alternate;
       z-index: -3;
     }
     .blob.b1 { right: -6rem; top: -6rem; background: radial-gradient(circle, rgba(255,71,105,.6), rgba(255,71,105,0)); }
     .blob.b2 { left: -5rem; bottom: -7rem; background: radial-gradient(circle, rgba(0,169,255,.5), rgba(0,169,255,0)); animation-delay: 4s; }
-    @keyframes float { to { transform: translateY(2.4rem); opacity: .18; } }
+    @keyframes float { to { transform: translateY(2.4rem); opacity: .16; } }
 
+    /* layout */
     .layout {
       width: min(1180px, 100%);
       display: grid;
       grid-template-columns: 1.1fr .6fr;
       gap: 1.3rem;
+      opacity: 0;
+      transform: translateY(25px);
+      animation: enter .6s ease-out .15s forwards;
     }
+    @keyframes enter {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; max-width: 540px; }
     }
@@ -67,7 +76,7 @@
       transform-style: preserve-3d;
     }
     .tilt:hover {
-      transform: perspective(1000px) rotateX(-2deg) rotateY(2.5deg) translateY(-2px);
+      transform: perspective(1000px) rotateX(-2.5deg) rotateY(3deg) translateY(-3px);
       box-shadow: 0 20px 50px rgba(0,0,0,.35);
     }
 
@@ -81,6 +90,7 @@
     /* LEWA */
     .profile { padding: 1.5rem 1.4rem 1.1rem; }
     .top-row { display: flex; gap: 1.1rem; align-items: center; }
+
     .avatar-ring {
       width: 120px;
       height: 120px;
@@ -89,14 +99,21 @@
       padding: 3px;
       display: grid;
       place-items: center;
+      animation: floatAvatar 5.5s ease-in-out infinite;
+    }
+    @keyframes floatAvatar {
+      0%,100% { transform: translateY(2px); }
+      50% { transform: translateY(-5px); }
     }
     .avatar-img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       border-radius: inherit;
       border: 2px solid rgba(255,255,255,.35);
       object-fit: cover;
       background: #0d0d0d;
     }
+
     .name-box h1 {
       font-size: 1.55rem;
       margin: 0;
@@ -104,17 +121,34 @@
       gap: .4rem;
       align-items: center;
     }
+
     .online-pill {
       display: inline-flex;
       align-items: center;
       gap: .35rem;
-      background: rgba(58, 255, 142, .1);
+      background: rgba(58, 255, 142, .05);
       border: 1px solid rgba(58,255,142,.25);
       color: #e5fff1;
       border-radius: 999px;
       padding: .15rem .55rem .22rem;
       font-size: .56rem;
+      position: relative;
     }
+    .online-pill::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(58,255,142,1);
+      animation: pulse 1.15s ease-out infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+
     .sub { font-size: .7rem; margin-top: .35rem; color: var(--muted); }
 
     .about {
@@ -133,12 +167,33 @@
       gap: .4rem;
       font-size: .8rem;
       cursor: pointer;
-      transition: transform .12s ease-out;
+      transition: transform .12s ease-out, box-shadow .12s;
       color: #fff;
+      position: relative;
+      overflow: hidden;
     }
-    .btn-primary { background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      box-shadow: 0 12px 30px rgba(255,71,105,.15);
+    }
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -30%;
+      width: 40%;
+      height: 200%;
+      background: rgba(255,255,255,.1);
+      transform: rotate(15deg);
+      filter: blur(8px);
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine {
+      0% { left: -40%; }
+      100% { left: 140%; }
+    }
     .btn-dark { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.02); }
-    .btn:hover { transform: translateY(-1px); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 24px rgba(0,0,0,.25); }
 
     .stats {
       margin-top: 1.3rem;
@@ -152,7 +207,9 @@
       border-radius: 14px;
       padding: .55rem;
       text-align: center;
+      transition: transform .2s;
     }
+    .stat-box:hover { transform: translateY(-2px); }
     .stat-label { font-size: .6rem; text-transform: uppercase; color: rgba(255,255,255,.75); }
     .stat-value { font-size: .9rem; margin-top: .2rem; font-weight: 600; }
 
@@ -171,6 +228,11 @@
       display: flex;
       gap: .5rem;
       align-items: center;
+      transition: transform .16s ease-out, box-shadow .16s;
+    }
+    .game-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0,0,0,.25);
     }
     .game-icon {
       width: 34px;
@@ -223,17 +285,41 @@
       align-items: center;
     }
     .music-btn {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.04);
       background: rgba(255,255,255,.02);
       display: grid;
       place-items: center;
       cursor: pointer;
+      transition: transform .12s;
     }
+    .music-btn:hover { transform: scale(1.05); }
+
     .volume-wrap { display: flex; align-items: center; gap: .5rem; margin-top: .6rem; }
-    .volume-wrap input[type="range"] { width: 100%; accent-color: #ff4769; height: 3px; }
+    .volume-wrap input[type="range"] {
+      width: 100%;
+      accent-color: #ff4769;
+      height: 3px;
+    }
+
+    /* fake progress anim info */
+    .panel-box .small-hint {
+      font-size: .58rem;
+      color: rgba(255,255,255,.28);
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+    }
+    .panel-box .small-dot {
+      width: 6px; height: 6px; border-radius: 999px; background: #ff4769;
+      animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: .3; }
+      50% { opacity: 1; }
+    }
 
     .tag-pill {
       display: inline-flex;
@@ -245,7 +331,9 @@
       padding: .3rem .6rem;
       font-size: .66rem;
       margin: .25rem .25rem 0 0;
+      transition: transform .16s;
     }
+    .tag-pill:hover { transform: translateY(-1px); }
 
     .link-btn {
       width: 100%;
@@ -259,7 +347,10 @@
       font-size: .75rem;
       margin-bottom: .45rem;
       cursor: pointer;
+      color: #fff;
+      transition: transform .16s;
     }
+    .link-btn:hover { transform: translateY(-1px); }
 
     #ytplayer {
       position: absolute;
@@ -279,15 +370,11 @@
     <div class="card profile tilt">
       <div class="top-row">
         <div class="avatar-ring">
-          <!-- twój gif -->
-          <img src="avatar.gif?v=1" class="avatar-img" alt="avatar" onerror="this.src='https://via.placeholder.com/120/0d0d0d/ffffff?text=%20';" />
+          <img src="avatar.gif" class="avatar-img" alt="avatar" onerror="this.src='https://via.placeholder.com/120/0d0d0d/ffffff?text=%20';" />
         </div>
         <div class="name-box">
           <h1>B3sttieee <span style="font-size:.78rem;">🔥</span></h1>
-          <div class="online-pill">
-            <span style="width:7px;height:7px;border-radius:999px;background:#3aff8e;display:inline-block;"></span>
-            online
-          </div>
+          <div class="online-pill">online</div>
           <p class="sub">Patryk • 20 lat</p>
         </div>
       </div>
@@ -370,9 +457,9 @@
           <i class="fa-solid fa-volume-low"></i>
           <input type="range" id="volumeSlider" min="0" max="100" value="30">
         </div>
-        <small style="display:block;margin-top:.35rem;color:rgba(255,255,255,.32);font-size:.58rem;">
-          jeśli cisza – kliknij ▶ (przeglądarka blokuje autoplay)
-        </small>
+        <div class="small-hint">
+          <span class="small-dot"></span> jeśli cisza – kliknij ▶ (przeglądarka blokuje autoplay)
+        </div>
       </div>
 
       <div class="panel-box tilt">
@@ -417,7 +504,7 @@
       document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
     });
 
-    // YT
+    // YT player
     let ytPlayer;
     let isPlaying = false;
     const VOLUME_DEFAULT = 30;
