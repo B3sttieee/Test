@@ -5,265 +5,382 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>B3sttieee | Bio</title>
 
-  <!-- Discord / Twitter preview -->
+  <!-- podgląd -->
   <meta property="og:title" content="B3sttie & Bio" />
   <meta property="og:description" content="Linki, Discord, Roblox, Valorant, muzyka." />
   <meta property="og:image" content="https://b3sttieee.github.io/Test/Embed.png" />
   <meta property="og:url" content="https://b3sttieee.github.io/Test/" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- mała favicon -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230f0f14'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' fill='white'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E" />
+  <!-- favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23090a10'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='30' fill='white'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E" />
 
   <style>
-    :root{
+    :root {
       --bg: radial-gradient(circle at 20% -20%, #0a0a12 0%, #04040a 45%, #000 100%);
-      --panel: rgba(7,7,12,.56);
-      --panel-2: rgba(7,7,12,.68);
-      --stroke: rgba(255,255,255,.04);
+      --panel: rgba(6, 6, 10, .55);
+      --panel2: rgba(6, 6, 10, .7);
+      --stroke: rgba(255,255,255,.03);
       --text: #fff;
       --muted: rgba(255,255,255,.65);
-      --accent: #ff4769;
-      --accent2: #ff8b4f;
+      --accent: #ff4f74;
+      --accent2: #ff914d;
       --radius: 22px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      background:var(--bg);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:1.2rem;
-      overflow-x:hidden;
-      position:relative;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      padding: 1rem 1.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
     }
-    /* delikatniejsza kratka */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
+    /* kratka delikatna */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
       background-image:
-        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(255,255,255,.012) 1px, transparent 1px);
-      background-size:56px 56px;
-      pointer-events:none;
-      z-index:-3;
+          linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255,255,255,.012) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+      z-index: -3;
     }
-    .blob{position:fixed;width:34rem;height:34rem;filter:blur(85px);opacity:.4;z-index:-4;animation:blob 16s ease-in-out infinite alternate}
-    .b1{left:-8rem;top:-8rem;background:radial-gradient(circle, rgba(255,71,105,.3), transparent)}
-    .b2{right:-8rem;bottom:-10rem;background:radial-gradient(circle, rgba(104,90,255,.25), transparent);animation-delay:4s}
-    @keyframes blob{to{transform:translateY(2.6rem);opacity:.12}}
+    .blob {
+      position: fixed;
+      width: 30rem;
+      height: 30rem;
+      filter: blur(85px);
+      opacity: .35;
+      z-index: -4;
+      animation: blob 16s ease-in-out infinite alternate;
+    }
+    .b1 { left: -7rem; top: -7rem; background: radial-gradient(circle, rgba(255,79,116,.35), transparent); }
+    .b2 { right: -6rem; bottom: -9rem; background: radial-gradient(circle, rgba(126,100,255,.35), transparent); animation-delay: 4s;}
+    @keyframes blob { to { transform: translateY(2.4rem); opacity: .12; } }
 
-    .wrap{
-      width:min(1240px,100%);
-      display:grid;
-      grid-template-columns:1.1fr .58fr;
-      gap:1.2rem;
-      opacity:0;
-      transform:translateY(16px);
-      animation:show .45s ease .1s forwards;
+    /* top bar */
+    .topbar {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.015);
+      border-radius: 14px;
+      backdrop-filter: blur(6px);
+      padding: .4rem .7rem;
     }
-    @keyframes show{to{opacity:1;transform:translateY(0)}}
+    .top-left {
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+      font-size: .78rem;
+    }
+    .online-dot {
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: #3aff8e;
+      box-shadow: 0 0 10px rgba(58,255,142,.85);
+    }
+    .top-right {
+      display: flex; gap: .35rem;
+    }
+    .tb-btn {
+      background: rgba(255,255,255,.015);
+      border: 1px solid rgba(255,255,255,.01);
+      border-radius: 999px;
+      padding: .3rem .7rem;
+      font-size: .68rem;
+      cursor: pointer;
+    }
+    .tb-btn:hover { background: rgba(255,255,255,.04); }
 
-    @media(max-width:860px){
-      .wrap{grid-template-columns:1fr;max-width:560px}
-      body{padding:.6rem}
+    /* layout */
+    .layout {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr .55fr;
+      gap: 1.1rem;
     }
-
-    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);backdrop-filter:blur(10px);box-shadow:0 14px 45px rgba(0,0,0,.35)}
-
-    /* LEWA */
-    .hero{overflow:hidden}
-    .hero .head{
-      height:85px;               /* niższy pasek */
-      background:rgba(15,15,20,.85);
-      border-radius:calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
-      border-bottom:1px solid rgba(255,255,255,.015);
-    }
-    .hero .body{padding:1.3rem 1.35rem 1.1rem;}
-
-    .row{display:flex;gap:1rem;align-items:center}
-    .avatar{
-      width:120px;height:120px;margin-top:-45px;position:relative;flex:0 0 120px;
-    }
-    .ring{
-      position:absolute;inset:0;border-radius:999px;padding:3px;background:radial-gradient(circle,rgba(255,255,255,.7),transparent 70%);display:grid;place-items:center;animation:av 5.6s ease-in-out infinite;
-    }
-    @keyframes av{0%,100%{transform:translateY(2px)}50%{transform:translateY(-5px)}}
-    .ring::after{content:"";position:absolute;inset:-12%;border:1px solid rgba(255,255,255,.25);border-radius:inherit;animation:pulse 3s ease-out infinite}
-    @keyframes pulse{0%{transform:scale(1);opacity:.35}100%{transform:scale(1.23);opacity:0}}
-    .avatar img{
-      width:100%;height:100%;border-radius:999px;border:2px solid rgba(255,255,255,.55);object-fit:cover;background:radial-gradient(circle,#1b1b1b,#000 60%);
-    }
-
-    .name h1{margin:0;font-size:2rem;line-height:1}
-    .badge{
-      margin-top:.35rem;
-      display:inline-flex;
-      gap:.4rem;
-      align-items:center;
-      background:rgba(58,255,142,.07);
-      border:1px solid rgba(58,255,142,.25);
-      border-radius:999px;
-      padding:.15rem .6rem .2rem 1.1rem;
-      font-size:.6rem;
-      position:relative;
-    }
-    .badge::before{
-      content:"";position:absolute;left:.4rem;top:50%;transform:translateY(-50%);
-      width:7px;height:7px;border-radius:999px;background:#3aff8e;box-shadow:0 0 10px rgba(58,255,142,.9);
-    }
-    .sub{color:rgba(255,255,255,.8);font-size:.8rem;margin-top:.25rem}
-
-    .about{
-      margin-top:1rem;
-      font-size:.85rem;
-      line-height:1.5;
-      color:var(--muted);
-      max-width:36rem;          /* żeby się nie ciągnęło */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; max-width: 560px; }
+      .topbar { max-width: 560px; }
     }
 
-    .cta{
-      display:flex;
-      gap:.7rem;
-      flex-wrap:wrap;
-      margin-top:1rem;
-    }
-    .btn{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.02);
-      border-radius:14px;
-      padding:.6rem .9rem;
-      display:inline-flex;
-      gap:.4rem;
-      align-items:center;
-      justify-content:center;
-      font-size:.8rem;
-      color:#fff;
-      min-width:145px;          /* równe */
-      cursor:pointer;
-      transition:.12s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .btn:hover{background:rgba(255,255,255,.05);transform:translateY(-1px)}
-    .btn.primary{
-      background:linear-gradient(135deg,#ff4769,#ff8b4f);
-      border:none;
-      box-shadow:0 12px 25px rgba(255,71,105,.16)
-    }
-    .btn .rip{
-      position:absolute;
-      border-radius:999px;
-      background:rgba(255,255,255,.35);
-      transform:translate(-50%,-50%);
-      pointer-events:none;
-      animation:rip .6s ease-out forwards;
-    }
-    @keyframes rip{from{width:0;height:0;opacity:.45}to{width:420px;height:420px;opacity:0}}
-
-    .grid3{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(120px,1fr));
-      gap:.8rem;
-      margin-top:1rem;
-    }
-    .info{
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.015);
-      border-radius:14px;
-      padding:.55rem .7rem;
-      position:relative;
-      overflow:hidden;
-    }
-    /* mała ikonka w rogu każdej karty */
-    .info::after{
-      content:"•";
-      position:absolute;
-      right:.55rem;
-      top:.3rem;
-      font-size:.95rem;
-      color:rgba(255,255,255,.08);
-    }
-    .info small{font-size:.6rem;text-transform:uppercase;color:rgba(255,255,255,.5)}
-    .info strong{display:block;margin-top:.25rem}
-
-    .id-row{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(130px,1fr));
-      gap:.7rem;
-      margin-top:.9rem;
-    }
-    .id{
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.015);
-      border-radius:14px;
-      padding:.55rem .65rem;
-      display:flex;
-      gap:.55rem;
-      align-items:center;
-    }
-    .ico{
-      width:34px;height:34px;
-      border-radius:12px;
-      background:rgba(255,255,255,.08);
-      display:grid;place-items:center;
-      flex:0 0 34px;
-    }
-    .id small{display:block;font-size:.58rem;text-transform:uppercase;color:rgba(255,255,255,.45)}
-    .id span{font-size:.78rem}
-
-    .foot{margin-top:1rem;text-align:center;font-size:.6rem;color:rgba(255,255,255,.3)}
-
-    /* PRAWA */
-    .side{display:flex;flex-direction:column;gap:1rem}
-    .panel{background:var(--panel-2);border:1px solid var(--stroke);border-radius:18px;backdrop-filter:blur(10px);padding:.85rem .95rem .85rem}
-    .p-title{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:.55rem}
-
-    .player-head{display:flex;align-items:center;justify-content:space-between;gap:.7rem}
-    .p-info small{font-size:.56rem;color:rgba(255,255,255,.4)}
-    .p-info div{font-size:.72rem;display:flex;gap:.4rem;align-items:center;font-weight:600}
-    .p-btn{width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.055);background:rgba(255,255,255,.02);display:grid;place-items:center;cursor:pointer}
-    .p-btn:hover{background:rgba(255,255,255,.08)}
-    .vol{display:flex;gap:.5rem;align-items:center;margin-top:.55rem}
-    .vol input[type=range]{width:100%;accent-color:var(--accent)}
-    .hint{display:flex;gap:.4rem;align-items:center;margin-top:.4rem;font-size:.58rem;color:rgba(255,255,255,.3)}
-    .dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
-
-    .tags .chip{
-      display:inline-flex;
-      gap:.35rem;
-      align-items:center;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.01);
-      border-radius:999px;
-      padding:.3rem .6rem;
-      font-size:.65rem;
-      margin:.25rem .25rem 0 0;
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 42px rgba(0,0,0,.25);
     }
 
-    .link{
-      width:100%;
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.01);
-      border-radius:14px;
-      padding:.45rem .6rem;
-      display:flex;
-      gap:.45rem;
-      align-items:center;
-      color:#fff;
-      text-decoration:none;
-      margin-bottom:.45rem;
+    /* profil */
+    .profile {
+      padding: 1.1rem 1.25rem 1.05rem;
+      position: relative;
+      overflow: hidden;
     }
-    .link:hover{background:rgba(255,255,255,.06);transform:translateY(-1px)}
+    .avatar-wrap {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      top: 1.1rem;
+      left: 1.25rem;
+    }
+    .avatar-ring {
+      position: absolute;
+      inset: 0;
+      padding: 3px;
+      background: radial-gradient(circle, rgba(255,255,255,.7), transparent 70%);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      animation: av 5.5s ease-in-out infinite;
+    }
+    @keyframes av { 0%, 100% {transform: translateY(1px)} 50% {transform: translateY(-5px)} }
+    .avatar-ring::after {
+      content: "";
+      position: absolute;
+      inset: -12%;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: inherit;
+      animation: ring 3s ease-out infinite;
+    }
+    @keyframes ring { from {opacity: .4; transform: scale(1);} to {opacity: 0; transform: scale(1.25);} }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.6);
+      object-fit: cover;
+      background: #1b1b1b;
+    }
 
-    @media(max-width:860px){
-      .hero .body{padding:1.1rem .7rem 1rem}
-      .grid3,.id-row{grid-template-columns:1fr}
-      .btn{width:100%;justify-content:flex-start}
+    .profile-content {
+      padding-left: 145px;
+    }
+    .name-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .name-block h1 {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(58,255,142,.07);
+      border: 1px solid rgba(58,255,142,.25);
+      border-radius: 999px;
+      padding: .15rem .65rem .2rem 1.05rem;
+      font-size: .6rem;
+      position: relative;
+      margin-top: .45rem;
+    }
+    .status-pill::before {
+      content: "";
+      position: absolute;
+      left: .4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: #3aff8e;
+      box-shadow: 0 0 10px rgba(58,255,142,1);
+    }
+    .bio {
+      margin-top: .75rem;
+      font-size: .82rem;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .actions {
+      margin-top: .9rem;
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.02);
+      border-radius: 14px;
+      padding: .55rem .9rem;
+      font-size: .78rem;
+      color: #fff;
+      display: inline-flex;
+      gap: .4rem;
+      align-items: center;
+      justify-content: center;
+      min-width: 145px;
+      cursor: pointer;
+      transition: .12s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 12px 25px rgba(255,79,116,.2);
+    }
+    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.05); }
+    .btn.primary:hover { filter: brightness(1.03); }
+
+    .stats {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(100px, 1fr));
+      gap: .75rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.015);
+      border-radius: 14px;
+      padding: .55rem .6rem;
+    }
+    .stat-card small {
+      display: block;
+      font-size: .6rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .stat-card strong {
+      display: block;
+      margin-top: .3rem;
+    }
+
+    .id-line {
+      margin-top: .7rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(130px,1fr));
+      gap: .75rem;
+    }
+    .id-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.01);
+      border-radius: 14px;
+      padding: .55rem .6rem;
+      display: flex;
+      gap: .55rem;
+      align-items: center;
+    }
+    .id-icon {
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      display: grid; place-items: center;
+      flex: 0 0 34px;
+    }
+    .id-card small {
+      display: block;
+      font-size: .58rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .id-card span { font-size: .78rem; }
+
+    .foot {
+      margin-top: .85rem;
+      font-size: .6rem;
+      color: rgba(255,255,255,.27);
+      text-align: center;
+    }
+
+    /* prawa kolumna */
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .panel {
+      background: var(--panel2);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: .8rem .9rem .8rem;
+      backdrop-filter: blur(10px);
+    }
+    .panel-title {
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.55);
+      margin-bottom: .6rem;
+    }
+
+    .player-head {
+      display: flex;
+      justify-content: space-between;
+      gap: .7rem;
+      align-items: center;
+    }
+    .pinfo small { font-size: .58rem; color: rgba(255,255,255,.35); }
+    .pinfo div { font-size: .72rem; font-weight: 600; display: flex; gap: .4rem; align-items: center; }
+    .play-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.05);
+      background: rgba(255,255,255,.03);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .play-btn:hover { background: rgba(255,255,255,.08); }
+    .vol-line { display: flex; gap: .45rem; align-items: center; margin-top: .5rem; }
+    .vol-line input[type=range] { width: 100%; accent-color: var(--accent); }
+    .player-hint { margin-top: .5rem; font-size: .58rem; display: flex; gap: .35rem; align-items: center; color: rgba(255,255,255,.34); }
+    .player-hint .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--accent); }
+
+    .tags .chip {
+      display: inline-flex;
+      gap: .35rem;
+      align-items: center;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.01);
+      border-radius: 999px;
+      padding: .3rem .6rem;
+      font-size: .65rem;
+      margin: .25rem .25rem 0 0;
+    }
+
+    .link-btn {
+      width: 100%;
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.01);
+      border-radius: 14px;
+      padding: .45rem .55rem;
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: .75rem;
+      margin-bottom: .45rem;
+    }
+    .link-btn:hover { background: rgba(255,255,255,.06); transform: translateY(-1px); }
+
+    @media (max-width: 900px) {
+      .profile-content { padding-left: 0; margin-top: 7.1rem; }
+      .avatar-wrap { position: relative; top: 0; left: 0; margin-bottom: .5rem; }
+      .stats, .id-line { grid-template-columns: 1fr; }
+      .actions .btn { width: 100%; }
     }
   </style>
 </head>
@@ -271,55 +388,75 @@
   <div class="blob b1"></div>
   <div class="blob b2"></div>
 
-  <main class="wrap">
-    <!-- LEWA KARTA -->
-    <section class="card hero" id="profile">
-      <div class="head"></div>
-      <div class="body">
-        <div class="row">
-          <div class="avatar">
-            <div class="ring">
-              <img src="https://b3sttieee.github.io/Test/avatar.gif"
-                   alt="avatar"
-                   onerror="this.src='https://via.placeholder.com/120/1b1b1b/ffffff?text=%20'">
-            </div>
-          </div>
-          <div class="name">
+  <header class="topbar">
+    <div class="top-left">
+      <span class="online-dot"></span>
+      <span><strong>B3sttieee</strong> • twój mini profil</span>
+    </div>
+    <div class="top-right">
+      <button class="tb-btn" onclick="document.getElementById('profile').scrollIntoView({behavior:'smooth'})">Profil</button>
+      <button class="tb-btn" onclick="document.getElementById('musicPanel').scrollIntoView({behavior:'smooth',block:'center'})">Muzyka</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- lewa -->
+    <section class="card profile" id="profile">
+      <div class="avatar-wrap">
+        <div class="avatar-ring">
+          <img src="https://b3sttieee.github.io/Test/avatar.gif"
+               alt="avatar"
+               class="avatar-img"
+               onerror="this.src='https://via.placeholder.com/120/1b1b1b/ffffff?text=%20'">
+        </div>
+      </div>
+      <div class="profile-content">
+        <div class="name-row">
+          <div class="name-block">
             <h1>B3sttieee 🔥</h1>
-            <div class="badge">online</div>
+            <div class="status-pill">online</div>
             <p class="sub">Patryk • 20 lat</p>
           </div>
         </div>
 
-        <p class="about">
+        <p class="bio">
           Hej! Jestem Patryk (B3sttieee) 👋 Gram, z nudów robię skrypty i takie stronki, a muzyka musi lecieć cały czas 🎧
           Niżej masz moje linki i ID, żebyś mógł dodać mnie w gierkach.
         </p>
 
-        <div class="cta">
+        <div class="actions">
           <a class="btn primary" href="https://www.roblox.com/users/1308591016/profile" target="_blank">🧱 Roblox profile</a>
           <button class="btn" id="copyDiscord">💬 Copy Discord</button>
           <button class="btn" id="toPlayer">🎵 Player</button>
         </div>
 
-        <div class="grid3">
-          <div class="info"><small>discord</small><strong>b3sttiee</strong></div>
-          <div class="info"><small>roblox</small><strong>1 link</strong></div>
-          <div class="info"><small>skrypty</small><strong>for fun 💻</strong></div>
+        <div class="stats">
+          <div class="stat-card"><small>discord</small><strong>b3sttiee</strong></div>
+          <div class="stat-card"><small>roblox</small><strong>1 link</strong></div>
+          <div class="stat-card"><small>skrypty</small><strong>for fun 💻</strong></div>
         </div>
 
-        <div class="id-row">
-          <div class="id">
-            <div class="ico" style="background:linear-gradient(180deg,#ff4d6d,#ff2345);">🟥</div>
-            <div><small>riot / valorant</small><span>B3sttieee#VALO</span></div>
+        <div class="id-line">
+          <div class="id-card">
+            <div class="id-icon" style="background:linear-gradient(180deg,#ff4d6d,#ff2345);">🟥</div>
+            <div>
+              <small>riot / valorant</small>
+              <span>B3sttieee#VALO</span>
+            </div>
           </div>
-          <div class="id">
-            <div class="ico">🧱</div>
-            <div><small>roblox nick</small><span>b3sttieee</span></div>
+          <div class="id-card">
+            <div class="id-icon">🧱</div>
+            <div>
+              <small>roblox nick</small>
+              <span>b3sttieee</span>
+            </div>
           </div>
-          <div class="id">
-            <div class="ico">🎮</div>
-            <div><small>epic games</small><span>B3sttieee</span></div>
+          <div class="id-card">
+            <div class="id-icon">🎮</div>
+            <div>
+              <small>epic games</small>
+              <span>B3sttieee</span>
+            </div>
           </div>
         </div>
 
@@ -327,26 +464,28 @@
       </div>
     </section>
 
-    <!-- PRAWA KOLUMNA -->
+    <!-- prawa -->
     <aside class="side">
       <section class="panel" id="musicPanel">
-        <div class="p-title">player</div>
+        <div class="panel-title">player</div>
         <div class="player-head">
-          <div class="p-info">
+          <div class="pinfo">
             <small>teraz leci</small>
             <div>▶ Pezet – Nitro</div>
           </div>
-          <button class="p-btn" id="togglePlay">▶</button>
+          <button class="play-btn" id="togglePlay">▶</button>
         </div>
-        <div class="vol">
+        <div class="vol-line">
           <span>🔉</span>
           <input type="range" id="volume" min="0" max="100" value="30">
         </div>
-        <div class="hint" id="pHint"><span class="dot"></span> kliknij ▶ żeby załadować muzykę</div>
+        <div class="player-hint" id="pHint">
+          <span class="dot"></span> kliknij ▶ żeby załadować muzykę
+        </div>
       </section>
 
       <section class="panel">
-        <div class="p-title">tags</div>
+        <div class="panel-title">tags</div>
         <div class="tags">
           <span class="chip">🧍 patryk</span>
           <span class="chip">🧱 roblox</span>
@@ -356,31 +495,18 @@
       </section>
 
       <section class="panel">
-        <div class="p-title">other links</div>
-        <a class="link" href="https://www.roblox.com/users/1308591016/profile" target="_blank">🧱 Roblox</a>
-        <a class="link" href="javascript:void(0)" onclick="navigator.clipboard.writeText('b3sttiee')">💬 Copy Discord</a>
+        <div class="panel-title">other links</div>
+        <a class="link-btn" href="https://www.roblox.com/users/1308591016/profile" target="_blank">🧱 Roblox</a>
+        <a class="link-btn" href="javascript:void(0)" onclick="navigator.clipboard.writeText('b3sttiee')">💬 Copy Discord</a>
       </section>
     </aside>
   </main>
 
-  <!-- ukryty YouTube -->
+  <!-- ukryty yt -->
   <div id="ytplayer" aria-hidden="true"></div>
 
   <script>
-    // ripple na przyciskach
-    document.querySelectorAll('.btn').forEach(btn=>{
-      btn.addEventListener('click',e=>{
-        const r=document.createElement('span');
-        r.className='rip';
-        const rect=btn.getBoundingClientRect();
-        r.style.left=(e.clientX-rect.left)+'px';
-        r.style.top=(e.clientY-rect.top)+'px';
-        btn.appendChild(r);
-        setTimeout(()=>r.remove(),600);
-      });
-    });
-
-    // kopiowanie discord
+    // kopiuj discord
     document.getElementById('copyDiscord').addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText('b3sttiee');
@@ -395,13 +521,13 @@
 
     // scroll do playera
     document.getElementById('toPlayer').addEventListener('click', () => {
-      document.getElementById('musicPanel').scrollIntoView({behavior: 'smooth', block: 'center'});
+      document.getElementById('musicPanel').scrollIntoView({behavior:'smooth', block:'center'});
     });
 
-    // lazy youtube
+    // yt lazy
     let yt = null;
     let playing = false;
-    const btnPlay = document.getElementById('togglePlay');
+    const btn = document.getElementById('togglePlay');
     const vol = document.getElementById('volume');
     const hint = document.getElementById('pHint');
     const VIDEO_ID = 'MvVWqhVlUzk';
@@ -409,8 +535,7 @@
     function loadYT() {
       return new Promise((resolve, reject) => {
         if (window.YT && window.YT.Player) {
-          resolve();
-          return;
+          resolve(); return;
         }
         const s = document.createElement('script');
         s.src = 'https://www.youtube.com/iframe_api';
@@ -428,12 +553,16 @@
         height: '0',
         width: '0',
         videoId: VIDEO_ID,
-        playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: VIDEO_ID, playsinline: 1 },
-        events: { onReady: () => yt.setVolume(parseInt(vol.value, 10)) }
+        playerVars: {
+          autoplay: 0, controls: 0, loop: 1, playlist: VIDEO_ID, playsinline: 1
+        },
+        events: {
+          onReady: () => yt.setVolume(parseInt(vol.value, 10))
+        }
       });
     }
 
-    btnPlay.addEventListener('click', async () => {
+    btn.addEventListener('click', async () => {
       try {
         await ensurePlayer();
       } catch (e) {
@@ -446,12 +575,12 @@
         yt.setVolume(parseInt(vol.value, 10));
         yt.playVideo();
         playing = true;
-        btnPlay.textContent = '⏸';
+        btn.textContent = '⏸';
         hint.textContent = 'gra 🎧';
       } else {
         yt.pauseVideo();
         playing = false;
-        btnPlay.textContent = '▶';
+        btn.textContent = '▶';
         hint.textContent = 'zatrzymane';
       }
     });
