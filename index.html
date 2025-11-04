@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B3sttieee | Bio</title>
 
-  <!-- podgląd w Discordzie -->
+  <!-- podgląd -->
   <meta property="og:title" content="B3sttie & Bio" />
   <meta property="og:description" content="Linki, Discord, Roblox, Valorant, muzyka." />
   <meta property="og:image" content="https://b3sttieee.github.io/Test/Embed.png" />
   <meta property="og:url" content="https://b3sttieee.github.io/Test/" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- malutka wbudowana favicon (żeby nie mieliło) -->
+  <!-- mała favicon, żeby nie mieliło -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%238b5cf6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='30' fill='white'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E" />
 
   <style>
@@ -76,9 +76,10 @@
       backdrop-filter: blur(12px);
     }
 
-    /* lewa */
+    /* LEWA */
     .profile { padding: 1.5rem 1.4rem 1.1rem; }
     .top-row { display: flex; gap: 1.1rem; align-items: center; }
+
     .avatar-ring {
       width: 120px;
       height: 120px;
@@ -90,16 +91,21 @@
       animation: avatarFloat 5.5s ease-in-out infinite;
     }
     @keyframes avatarFloat { 0%,100%{transform:translateY(2px)}50%{transform:translateY(-5px)} }
+
     .avatar-img {
       width: 100%;
       height: 100%;
       border-radius: inherit;
       border: 2px solid rgba(255,255,255,.35);
       object-fit: cover;
-      /* NAJWAŻNIEJSZE: pełna ścieżka do gifa + przesunięcie na prawo */
-      object-position: right center;
-      background: #0d0d0d;
+      /* TU poprawka: bierzemy środek obrazu, a nie prawą stronę */
+      object-position: center center;
+      /* i dajemy trochę jaśniejsze tło, żeby ciemny gif się odciął */
+      background: radial-gradient(circle, #1a1a1a 0%, #000 70%);
+      /* lekki cień wewnątrz, żeby brzegi były jasne */
+      box-shadow: inset 0 0 20px rgba(0,0,0,.45);
     }
+
     .name-box h1 {
       font-size: 1.55rem;
       margin: 0;
@@ -107,6 +113,7 @@
       gap: .4rem;
       align-items: center;
     }
+
     .online-pill {
       display: inline-flex;
       align-items: center;
@@ -128,6 +135,7 @@
       animation: pulse 1.2s ease-out infinite;
     }
     @keyframes pulse { 0%{transform:translateY(-50%) scale(1);opacity:1}100%{transform:translateY(-50%) scale(2.1);opacity:0} }
+
     .sub { font-size: .7rem; margin-top: .35rem; color: var(--muted); }
 
     .about { margin-top: 1.1rem; font-size: .83rem; line-height: 1.5; }
@@ -170,6 +178,7 @@
     .music-info small { font-size: .58rem; color: rgba(255,255,255,.35); }
     .music-info div { font-size: .74rem; font-weight: 500; display: flex; gap: .45rem; align-items: center; }
     .music-btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid rgba(255,255,255,.04); background: rgba(255,255,255,.02); display: grid; place-items: center; cursor: pointer; }
+
     .volume-wrap { display: flex; align-items: center; gap: .5rem; margin-top: .6rem; }
     .volume-wrap input[type="range"] { width: 100%; accent-color: #ff4769; }
 
@@ -187,13 +196,15 @@
   <div class="blob b2"></div>
 
   <div class="layout">
-    <!-- lewa -->
+    <!-- LEWA -->
     <div class="card profile tilt">
       <div class="top-row">
         <div class="avatar-ring">
-          <!-- TU NA SZTYWNO PEŁNY LINK -->
-          <img src="https://b3sttieee.github.io/Test/avatar.gif" class="avatar-img" alt="avatar"
-               onerror="this.src='https://via.placeholder.com/120/0d0d0d/ffffff?text=%20';" />
+          <!-- TU pełna ścieżka do gifa w repo -->
+          <img src="https://b3sttieee.github.io/Test/avatar.gif"
+               class="avatar-img"
+               alt="avatar"
+               onerror="this.src='https://via.placeholder.com/120/1a1a1a/ffffff?text=%20';" />
         </div>
         <div class="name-box">
           <h1>B3sttieee 🔥</h1>
@@ -255,7 +266,7 @@
       <p class="footer">made on GitHub Pages 💜</p>
     </div>
 
-    <!-- prawa -->
+    <!-- PRAWA -->
     <div class="side">
       <div class="panel-box tilt" id="musicPanel">
         <div class="panel-title">player</div>
@@ -307,12 +318,12 @@
       }
     });
 
-    // scroll do playera
+    // scroll to player
     document.getElementById("scrollMusic").addEventListener("click", () => {
       document.getElementById("musicPanel").scrollIntoView({behavior: "smooth", block: "center"});
     });
 
-    // lazy youtube
+    // LAZY YOUTUBE
     let ytPlayer = null;
     let isPlaying = false;
     const volumeSlider = document.getElementById("volumeSlider");
@@ -327,7 +338,6 @@
         s.onload = () => resolve();
         s.onerror = () => reject(new Error("YT blocked"));
         document.body.appendChild(s);
-        // safety timeout 4s
         setTimeout(() => reject(new Error("YT timeout")), 4000);
       });
     }
@@ -342,30 +352,24 @@
           videoId: YT_ID,
           playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: YT_ID, playsinline: 1 },
           events: {
-            onReady: () => {
-              ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
-            }
+            onReady: () => ytPlayer.setVolume(parseInt(volumeSlider.value, 10))
           }
         });
       };
     }
 
     toggleBtn.addEventListener("click", async () => {
-      // spróbuj zrobić player
       try {
         await ensurePlayer();
       } catch (err) {
         statusEl.textContent = "YouTube jest zablokowany w tej przeglądarce 🙃";
         return;
       }
-
-      // jeśli player jeszcze się tworzy, chwilę poczekaj
       if (!ytPlayer) {
         statusEl.textContent = "Ładuję player...";
-        setTimeout(() => { statusEl.textContent = ""; }, 1500);
+        setTimeout(() => statusEl.textContent = "", 1500);
         return;
       }
-
       if (!isPlaying) {
         ytPlayer.unMute();
         ytPlayer.setVolume(parseInt(volumeSlider.value, 10));
